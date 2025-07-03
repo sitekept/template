@@ -13,6 +13,38 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+
+    // Enhanced TypeScript strict settings
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    // Additional strict checks
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+
+    // Import/Export settings
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false,
+
+    // Additional helpful options
+    "noEmitOnError": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+
     "plugins": [
       {
         "name": "next"
