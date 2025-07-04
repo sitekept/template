@@ -15,12 +15,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Ruben Hagège Pâtisserie - Haute Pâtisserie Alfortville",
+  title: "WebFacto - Showcase Portfolio",
   description:
-    "Découvrez l'univers de Ruben Hagège, Meilleur Apprenti de France 2021, et ses créations pâtissières d'exception à Alfortville. Commandes sur mesure pour tous vos événements.",
+    "Découvrez notre portfolio de sites vitrines pour différents métiers : pâtisserie, fleuriste, réparation informatique, boulangerie et plus encore.",
   keywords:
-    "pâtisserie, Ruben Hagège, Alfortville, Meilleur Apprenti de France, gâteaux sur mesure, événements, traiteur",
-  authors: [{ name: "Ruben Hagège" }],
+    "site vitrine, portfolio, pâtisserie, fleuriste, réparation ordinateur, boulangerie, showcase",
+  authors: [{ name: "WebFacto" }],
 };
 
 export const viewport: Viewport = {
