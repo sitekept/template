@@ -28,4 +28,4 @@ export default function PattiserieLayout({
   children: React.ReactNode;
 }) {
   return <>{children}</>;
-} 
+}

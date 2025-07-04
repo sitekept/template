@@ -16,10 +16,6 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "WebFacto - Showcase Portfolio",
-  description:
-    "Découvrez notre portfolio de sites vitrines pour différents métiers : pâtisserie, fleuriste, réparation informatique, boulangerie et plus encore.",
-  keywords:
-    "site vitrine, portfolio, pâtisserie, fleuriste, réparation ordinateur, boulangerie, showcase",
   authors: [{ name: "WebFacto" }],
 };
 

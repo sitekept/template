@@ -28,4 +28,4 @@ export default function FleuristeLayout({
   children: React.ReactNode;
 }) {
   return <>{children}</>;
-} 
+}

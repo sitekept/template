@@ -28,4 +28,4 @@ export default function OrdinateurLayout({
   children: React.ReactNode;
 }) {
   return <>{children}</>;
-} 
+}

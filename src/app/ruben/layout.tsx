@@ -28,4 +28,4 @@ export default function RubenLayout({
   children: React.ReactNode;
 }) {
   return <>{children}</>;
-} 
+}

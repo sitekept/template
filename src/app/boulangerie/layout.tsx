@@ -28,4 +28,4 @@ export default function BoulangerieLayout({
   children: React.ReactNode;
 }) {
   return <>{children}</>;
-} 
+}
