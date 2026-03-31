@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { Button } from "@/components/ui/button";
 
 export default function Pattiserie() {
@@ -78,7 +79,10 @@ export default function Pattiserie() {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-cream/80" />
-        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <ScrollReveal
+          className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
+          distance={18}
+        >
           <div className="mb-6 flex items-center justify-center">
             <Sparkles className="mr-3 h-8 w-8 text-gold" />
             <span className="text-lg font-medium text-gold">
@@ -114,13 +118,13 @@ export default function Pattiserie() {
               </Button>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Spécialités Section */}
       <section id="specialites" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={22}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-chocolate sm:text-5xl">
               Nos spécialités d&apos;exception
             </h2>
@@ -129,11 +133,11 @@ export default function Pattiserie() {
               préparée avec des ingrédients de première qualité et un
               savoir-faire transmis de génération en génération.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Catégories de pâtisseries */}
           <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div className="space-y-8">
+            <ScrollReveal className="space-y-8" distance={26}>
               <h3 className="mb-6 font-serif text-2xl font-semibold text-chocolate">
                 Entremets & Gâteaux
               </h3>
@@ -163,8 +167,10 @@ export default function Pattiserie() {
                     "https://images.unsplash.com/photo-1586985289906-406988974504?auto=format&fit=crop&w=400&q=80",
                 },
               ].map((item, index) => (
-                <div
+                <ScrollReveal
                   key={index}
+                  delay={index * 60}
+                  distance={18}
                   className="flex items-center space-x-4 rounded-lg bg-cream/30 p-4"
                 >
                   <div
@@ -182,11 +188,11 @@ export default function Pattiserie() {
                   <div className="text-lg font-bold text-gold">
                     {item.price}
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
-            </div>
+            </ScrollReveal>
 
-            <div className="space-y-8">
+            <ScrollReveal className="space-y-8" delay={90} distance={26}>
               <h3 className="mb-6 font-serif text-2xl font-semibold text-chocolate">
                 Pâtisseries Individuelles
               </h3>
@@ -216,8 +222,10 @@ export default function Pattiserie() {
                     "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?auto=format&fit=crop&w=400&q=80",
                 },
               ].map((item, index) => (
-                <div
+                <ScrollReveal
                   key={index}
+                  delay={index * 60}
+                  distance={18}
                   className="flex items-center space-x-4 rounded-lg bg-cream/30 p-4"
                 >
                   <div
@@ -235,9 +243,9 @@ export default function Pattiserie() {
                   <div className="text-lg font-bold text-gold">
                     {item.price}
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -246,7 +254,7 @@ export default function Pattiserie() {
       <section id="apropos" className="bg-chocolate py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
+            <ScrollReveal distance={26}>
               <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl">
                 Une passion familiale depuis 1985
               </h2>
@@ -276,8 +284,8 @@ export default function Pattiserie() {
                   <div className="text-sm">Clients satisfaits</div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
+            </ScrollReveal>
+            <ScrollReveal className="relative" delay={90} distance={30}>
               <div className="aspect-square overflow-hidden rounded-lg shadow-2xl">
                 <div
                   className="h-full w-full bg-cover bg-center"
@@ -295,7 +303,7 @@ export default function Pattiserie() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -303,11 +311,11 @@ export default function Pattiserie() {
       {/* Témoignages */}
       <section className="bg-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={22}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-chocolate sm:text-5xl">
               Ce que disent nos clients
             </h2>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
@@ -329,7 +337,12 @@ export default function Pattiserie() {
                 event: "Anniversaire",
               },
             ].map((testimonial, index) => (
-              <div key={index} className="rounded-lg bg-white p-8 shadow-lg">
+              <ScrollReveal
+                key={index}
+                delay={index * 70}
+                distance={20}
+                className="rounded-lg bg-white p-8 shadow-lg"
+              >
                 <div className="mb-4 flex items-center">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-current text-gold" />
@@ -344,7 +357,7 @@ export default function Pattiserie() {
                   </div>
                   <div className="text-sm text-gold">{testimonial.event}</div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -353,14 +366,14 @@ export default function Pattiserie() {
       {/* Galerie */}
       <section id="galerie" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={22}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-chocolate sm:text-5xl">
               Galerie gourmande
             </h2>
             <p className="text-xl text-muted-foreground">
               Un aperçu visuel de nos créations les plus emblématiques
             </p>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
               "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80",
@@ -372,15 +385,17 @@ export default function Pattiserie() {
               "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=80",
               "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=500&q=80",
             ].map((image, index) => (
-              <div
+              <ScrollReveal
                 key={index}
+                delay={(index % 4) * 55}
+                distance={16}
                 className="aspect-square overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-xl"
               >
                 <div
                   className="h-full w-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
                   style={{ backgroundImage: `url('${image}')` }}
                 />
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -389,14 +404,14 @@ export default function Pattiserie() {
       {/* Services & Événements */}
       <section className="bg-gold py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={22}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-gold-foreground sm:text-5xl">
               Services sur mesure
             </h2>
             <p className="text-xl text-gold-foreground/80">
               Nous créons des moments d&apos;exception pour tous vos événements
             </p>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
@@ -418,8 +433,10 @@ export default function Pattiserie() {
                   "Cocktails sucrés, pause-café gourmande et réceptions professionnelles",
               },
             ].map((service, index) => (
-              <div
+              <ScrollReveal
                 key={index}
+                delay={index * 70}
+                distance={20}
                 className="rounded-lg bg-white/10 p-8 text-center backdrop-blur-sm"
               >
                 <service.icon className="mx-auto mb-6 h-16 w-16 text-gold-foreground" />
@@ -427,7 +444,7 @@ export default function Pattiserie() {
                   {service.title}
                 </h3>
                 <p className="text-gold-foreground/80">{service.description}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -437,7 +454,7 @@ export default function Pattiserie() {
       <section id="contact" className="bg-chocolate py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
+            <ScrollReveal distance={24}>
               <h2 className="mb-8 font-serif text-4xl font-bold sm:text-5xl">
                 Venez nous rendre visite
               </h2>
@@ -483,8 +500,8 @@ export default function Pattiserie() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={90} distance={24}>
               <h3 className="mb-6 font-serif text-2xl font-semibold">
                 Commandez en ligne
               </h3>
@@ -511,7 +528,7 @@ export default function Pattiserie() {
               <p className="mt-6 text-sm text-white/60">
                 * Livraison possible dans un rayon de 20km
               </p>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -520,7 +537,7 @@ export default function Pattiserie() {
       <footer className="border-t bg-white py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div>
+            <ScrollReveal distance={16}>
               <div className="mb-4 flex items-center">
                 <ChefHat className="mr-2 h-8 w-8 text-chocolate" />
                 <span className="font-serif text-2xl font-bold text-chocolate">
@@ -531,8 +548,8 @@ export default function Pattiserie() {
                 L&apos;art de la pâtisserie française depuis 1985. Créations
                 artisanales d&apos;exception.
               </p>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={60} distance={16}>
               <h4 className="mb-4 font-semibold text-chocolate">
                 Liens rapides
               </h4>
@@ -562,8 +579,8 @@ export default function Pattiserie() {
                   Contact
                 </a>
               </div>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={120} distance={16}>
               <h4 className="mb-4 font-semibold text-chocolate">Suivez-nous</h4>
               <p className="mb-4 text-muted-foreground">
                 Restez informés de nos nouvelles créations et événements
@@ -572,7 +589,7 @@ export default function Pattiserie() {
               <div className="text-sm text-muted-foreground">
                 © 2024 Pâtisserie Douceur. Tous droits réservés.
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </footer>

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { Button } from "@/components/ui/button";
 
 export default function Fleuriste() {
@@ -78,7 +79,10 @@ export default function Fleuriste() {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-green-50/80" />
-        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <ScrollReveal
+          className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
+          distance={24}
+        >
           <div className="mb-6 flex items-center justify-center">
             <Sparkles className="mr-3 h-8 w-8 text-rose-400" />
             <span className="text-lg font-medium text-rose-500">
@@ -114,13 +118,13 @@ export default function Fleuriste() {
               </Button>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Compositions Section */}
       <section id="compositions" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={28}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-green-800 sm:text-5xl">
               Nos compositions florales
             </h2>
@@ -129,11 +133,11 @@ export default function Fleuriste() {
               conçue avec passion et réalisée avec des fleurs fraîches
               sélectionnées pour leur beauté et leur qualité.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Catégories de fleurs */}
           <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div className="space-y-8">
+            <ScrollReveal className="space-y-8" distance={32}>
               <h3 className="mb-6 font-serif text-2xl font-semibold text-green-800">
                 Bouquets & Compositions
               </h3>
@@ -163,8 +167,10 @@ export default function Fleuriste() {
                     "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=400&q=80",
                 },
               ].map((item, index) => (
-                <div
+                <ScrollReveal
                   key={index}
+                  delay={index * 85}
+                  distance={22}
                   className="flex items-center space-x-4 rounded-lg bg-green-50/50 p-4"
                 >
                   <div
@@ -182,11 +188,11 @@ export default function Fleuriste() {
                   <div className="text-lg font-bold text-rose-500">
                     {item.price}
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
-            </div>
+            </ScrollReveal>
 
-            <div className="space-y-8">
+            <ScrollReveal className="space-y-8" delay={120} distance={32}>
               <h3 className="mb-6 font-serif text-2xl font-semibold text-green-800">
                 Plantes & Jardinières
               </h3>
@@ -216,8 +222,10 @@ export default function Fleuriste() {
                     "https://images.unsplash.com/photo-1509423350716-97f2360af3e4?auto=format&fit=crop&w=400&q=80",
                 },
               ].map((item, index) => (
-                <div
+                <ScrollReveal
                   key={index}
+                  delay={index * 85}
+                  distance={22}
                   className="flex items-center space-x-4 rounded-lg bg-green-50/50 p-4"
                 >
                   <div
@@ -235,9 +243,9 @@ export default function Fleuriste() {
                   <div className="text-lg font-bold text-rose-500">
                     {item.price}
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -246,7 +254,7 @@ export default function Fleuriste() {
       <section id="apropos" className="bg-green-800 py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
+            <ScrollReveal distance={34}>
               <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl">
                 Une passion florale depuis 1992
               </h2>
@@ -274,8 +282,8 @@ export default function Fleuriste() {
                   <div className="text-sm">Clients heureux</div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
+            </ScrollReveal>
+            <ScrollReveal className="relative" delay={140} distance={38}>
               <div className="aspect-square overflow-hidden rounded-lg shadow-2xl">
                 <div
                   className="h-full w-full bg-cover bg-center"
@@ -293,7 +301,7 @@ export default function Fleuriste() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -301,11 +309,11 @@ export default function Fleuriste() {
       {/* Témoignages */}
       <section className="bg-green-50 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={28}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-green-800 sm:text-5xl">
               Ce que disent nos clients
             </h2>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
@@ -327,7 +335,12 @@ export default function Fleuriste() {
                 event: "Anniversaire",
               },
             ].map((testimonial, index) => (
-              <div key={index} className="rounded-lg bg-white p-8 shadow-lg">
+              <ScrollReveal
+                key={index}
+                delay={index * 95}
+                distance={24}
+                className="rounded-lg bg-white p-8 shadow-lg"
+              >
                 <div className="mb-4 flex items-center">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star
@@ -347,7 +360,7 @@ export default function Fleuriste() {
                     {testimonial.event}
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -356,14 +369,14 @@ export default function Fleuriste() {
       {/* Galerie */}
       <section id="galerie" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={28}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-green-800 sm:text-5xl">
               Galerie florale
             </h2>
             <p className="text-xl text-muted-foreground">
               Un aperçu de nos plus belles créations florales
             </p>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
               "https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=500&q=80",
@@ -375,15 +388,17 @@ export default function Fleuriste() {
               "https://images.unsplash.com/photo-1509423350716-97f2360af3e4?auto=format&fit=crop&w=500&q=80",
               "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=500&q=80",
             ].map((image, index) => (
-              <div
+              <ScrollReveal
                 key={index}
+                delay={(index % 4) * 80}
+                distance={20}
                 className="aspect-square overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-xl"
               >
                 <div
                   className="h-full w-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
                   style={{ backgroundImage: `url('${image}')` }}
                 />
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -392,7 +407,7 @@ export default function Fleuriste() {
       {/* Services & Événements */}
       <section className="bg-rose-500 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={28}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-white sm:text-5xl">
               Services personnalisés
             </h2>
@@ -400,7 +415,7 @@ export default function Fleuriste() {
               Nous créons l&apos;atmosphère florale parfaite pour tous vos
               événements
             </p>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
@@ -422,8 +437,10 @@ export default function Fleuriste() {
                   "Décoration florale de bureaux, événements corporate et réceptions",
               },
             ].map((service, index) => (
-              <div
+              <ScrollReveal
                 key={index}
+                delay={index * 90}
+                distance={24}
                 className="rounded-lg bg-white/10 p-8 text-center backdrop-blur-sm"
               >
                 <service.icon className="mx-auto mb-6 h-16 w-16 text-white" />
@@ -431,7 +448,7 @@ export default function Fleuriste() {
                   {service.title}
                 </h3>
                 <p className="text-white/90">{service.description}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -441,7 +458,7 @@ export default function Fleuriste() {
       <section id="contact" className="bg-green-800 py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
+            <ScrollReveal distance={30}>
               <h2 className="mb-8 font-serif text-4xl font-bold sm:text-5xl">
                 Visitez notre boutique
               </h2>
@@ -485,8 +502,8 @@ export default function Fleuriste() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={110} distance={30}>
               <h3 className="mb-6 font-serif text-2xl font-semibold">
                 Commandez vos fleurs
               </h3>
@@ -513,7 +530,7 @@ export default function Fleuriste() {
               <p className="mt-6 text-sm text-white/60">
                 * Livraison gratuite dans Lyon et communes limitrophes
               </p>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -522,7 +539,7 @@ export default function Fleuriste() {
       <footer className="border-t bg-white py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div>
+            <ScrollReveal distance={20}>
               <div className="mb-4 flex items-center">
                 <Flower className="mr-2 h-8 w-8 text-green-600" />
                 <span className="font-serif text-2xl font-bold text-green-800">
@@ -533,8 +550,8 @@ export default function Fleuriste() {
                 L&apos;art floral depuis 1992. Créations florales
                 d&apos;exception pour tous vos moments précieux.
               </p>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={80} distance={20}>
               <h4 className="mb-4 font-semibold text-green-800">
                 Liens rapides
               </h4>
@@ -564,8 +581,8 @@ export default function Fleuriste() {
                   Contact
                 </a>
               </div>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={160} distance={20}>
               <h4 className="mb-4 font-semibold text-green-800">Suivez-nous</h4>
               <p className="mb-4 text-muted-foreground">
                 Découvrez nos nouvelles créations et conseils floraux sur nos
@@ -574,7 +591,7 @@ export default function Fleuriste() {
               <div className="text-sm text-muted-foreground">
                 © 2024 Fleurs d&apos;Émeraude. Tous droits réservés.
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </footer>

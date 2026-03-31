@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { Button } from "@/components/ui/button";
 
 export default function Boulangerie() {
@@ -78,7 +79,10 @@ export default function Boulangerie() {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-amber-900/50 via-amber-900/20 to-amber-50/80" />
-        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <ScrollReveal
+          className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
+          distance={20}
+        >
           <div className="mb-6 flex items-center justify-center">
             <Sparkles className="mr-3 h-8 w-8 text-orange-400" />
             <span className="text-lg font-medium text-orange-500">
@@ -114,13 +118,13 @@ export default function Boulangerie() {
               </Button>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Produits Section */}
       <section id="produits" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={24}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-amber-800 sm:text-5xl">
               Nos spécialités artisanales
             </h2>
@@ -129,11 +133,11 @@ export default function Boulangerie() {
               préparé selon les méthodes traditionnelles avec des ingrédients
               soigneusement sélectionnés.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Catégories de produits */}
           <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div className="space-y-8">
+            <ScrollReveal className="space-y-8" distance={28}>
               <h3 className="mb-6 font-serif text-2xl font-semibold text-amber-800">
                 Pains & Baguettes
               </h3>
@@ -163,8 +167,10 @@ export default function Boulangerie() {
                     "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=400&q=80",
                 },
               ].map((item, index) => (
-                <div
+                <ScrollReveal
                   key={index}
+                  delay={index * 70}
+                  distance={20}
                   className="flex items-center space-x-4 rounded-lg bg-amber-50/50 p-4"
                 >
                   <div
@@ -182,11 +188,11 @@ export default function Boulangerie() {
                   <div className="text-lg font-bold text-orange-600">
                     {item.price}
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
-            </div>
+            </ScrollReveal>
 
-            <div className="space-y-8">
+            <ScrollReveal className="space-y-8" delay={100} distance={28}>
               <h3 className="mb-6 font-serif text-2xl font-semibold text-amber-800">
                 Viennoiseries & Pâtisseries
               </h3>
@@ -216,8 +222,10 @@ export default function Boulangerie() {
                     "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&w=400&q=80",
                 },
               ].map((item, index) => (
-                <div
+                <ScrollReveal
                   key={index}
+                  delay={index * 70}
+                  distance={20}
                   className="flex items-center space-x-4 rounded-lg bg-amber-50/50 p-4"
                 >
                   <div
@@ -235,9 +243,9 @@ export default function Boulangerie() {
                   <div className="text-lg font-bold text-orange-600">
                     {item.price}
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -246,7 +254,7 @@ export default function Boulangerie() {
       <section id="apropos" className="bg-amber-800 py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
+            <ScrollReveal distance={30}>
               <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl">
                 Une tradition familiale depuis 1978
               </h2>
@@ -277,8 +285,8 @@ export default function Boulangerie() {
                   <div className="text-sm">Clients fidèles</div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
+            </ScrollReveal>
+            <ScrollReveal className="relative" delay={110} distance={34}>
               <div className="aspect-square overflow-hidden rounded-lg shadow-2xl">
                 <div
                   className="h-full w-full bg-cover bg-center"
@@ -296,7 +304,7 @@ export default function Boulangerie() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -304,11 +312,11 @@ export default function Boulangerie() {
       {/* Témoignages */}
       <section className="bg-amber-50 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={24}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-amber-800 sm:text-5xl">
               Ce que disent nos clients
             </h2>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
@@ -330,7 +338,12 @@ export default function Boulangerie() {
                 event: "Passionnée de pain",
               },
             ].map((testimonial, index) => (
-              <div key={index} className="rounded-lg bg-white p-8 shadow-lg">
+              <ScrollReveal
+                key={index}
+                delay={index * 80}
+                distance={22}
+                className="rounded-lg bg-white p-8 shadow-lg"
+              >
                 <div className="mb-4 flex items-center">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star
@@ -350,7 +363,7 @@ export default function Boulangerie() {
                     {testimonial.event}
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -359,14 +372,14 @@ export default function Boulangerie() {
       {/* Galerie */}
       <section id="galerie" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={24}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-amber-800 sm:text-5xl">
               Notre savoir-faire en images
             </h2>
             <p className="text-xl text-muted-foreground">
               Découvrez l&apos;art de la boulangerie traditionnelle française
             </p>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
               "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80",
@@ -378,15 +391,17 @@ export default function Boulangerie() {
               "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=500&q=80",
               "https://images.unsplash.com/photo-1566419052333-545adad5b5b5?auto=format&fit=crop&w=500&q=80",
             ].map((image, index) => (
-              <div
+              <ScrollReveal
                 key={index}
+                delay={(index % 4) * 65}
+                distance={18}
                 className="aspect-square overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-xl"
               >
                 <div
                   className="h-full w-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
                   style={{ backgroundImage: `url('${image}')` }}
                 />
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -395,14 +410,14 @@ export default function Boulangerie() {
       {/* Services spécialisés */}
       <section className="bg-orange-600 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center" distance={26}>
             <h2 className="mb-6 font-serif text-4xl font-bold text-white sm:text-5xl">
               Services personnalisés
             </h2>
             <p className="text-xl text-white/90">
               Nous nous adaptons à tous vos besoins et événements spéciaux
             </p>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
@@ -424,8 +439,10 @@ export default function Boulangerie() {
                   "Service de livraison pour entreprises et collectivités",
               },
             ].map((service, index) => (
-              <div
+              <ScrollReveal
                 key={index}
+                delay={index * 75}
+                distance={22}
                 className="rounded-lg bg-white/10 p-8 text-center backdrop-blur-sm"
               >
                 <service.icon className="mx-auto mb-6 h-16 w-16 text-white" />
@@ -433,7 +450,7 @@ export default function Boulangerie() {
                   {service.title}
                 </h3>
                 <p className="text-white/90">{service.description}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -443,7 +460,7 @@ export default function Boulangerie() {
       <section id="contact" className="bg-amber-800 py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
+            <ScrollReveal distance={28}>
               <h2 className="mb-8 font-serif text-4xl font-bold sm:text-5xl">
                 Venez découvrir notre fournil
               </h2>
@@ -487,8 +504,8 @@ export default function Boulangerie() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={100} distance={28}>
               <h3 className="mb-6 font-serif text-2xl font-semibold">
                 Commandez vos produits frais
               </h3>
@@ -515,7 +532,7 @@ export default function Boulangerie() {
               <p className="mt-6 text-sm text-white/60">
                 * Produits frais préparés chaque matin
               </p>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -524,7 +541,7 @@ export default function Boulangerie() {
       <footer className="border-t bg-white py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div>
+            <ScrollReveal distance={18}>
               <div className="mb-4 flex items-center">
                 <Wheat className="mr-2 h-8 w-8 text-amber-600" />
                 <span className="font-serif text-2xl font-bold text-amber-800">
@@ -535,8 +552,8 @@ export default function Boulangerie() {
                 Maître Boulanger depuis 1978. L&apos;art de la boulangerie
                 traditionnelle française.
               </p>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={70} distance={18}>
               <h4 className="mb-4 font-semibold text-amber-800">
                 Liens rapides
               </h4>
@@ -566,8 +583,8 @@ export default function Boulangerie() {
                   Contact
                 </a>
               </div>
-            </div>
-            <div>
+            </ScrollReveal>
+            <ScrollReveal delay={140} distance={18}>
               <h4 className="mb-4 font-semibold text-amber-800">
                 Qualité artisanale
               </h4>
@@ -578,7 +595,7 @@ export default function Boulangerie() {
               <div className="text-sm text-muted-foreground">
                 © 2024 Le Fournil d&apos;Or. Tous droits réservés.
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </footer>
