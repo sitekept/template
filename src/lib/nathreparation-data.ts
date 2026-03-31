@@ -39,7 +39,7 @@ export const nathFooter = {
     "Facebook : Nath Reparation",
   ],
   copyright:
-    "Copyright © 2019. NathReparation. Site réalisé par CONCEPTING. Tous droits réservés.",
+    "Copyright © 2026. NathReparation. Site développé par Sitekept. Tous droits réservés.",
 } as const;
 
 export const nathHome = {
