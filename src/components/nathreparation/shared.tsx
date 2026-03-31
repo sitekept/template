@@ -2,6 +2,7 @@ import { ChevronRight, Phone, Play, Sparkles, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { NathScrollReveal } from "@/components/nathreparation/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { nathPhone } from "@/lib/nathreparation-data";
 
@@ -25,7 +26,10 @@ export function NathPageHero({
 }) {
   return (
     <section className="relative overflow-hidden border-b border-[#032549]/8 bg-[radial-gradient(circle_at_top_left,_rgba(230,41,56,0.16),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(4,79,122,0.18),_transparent_24%),linear-gradient(180deg,_#f8fbff_0%,_#eef4fb_100%)]">
-      <div className="mx-auto max-w-[1200px] px-4 py-18 sm:px-6 sm:py-24 lg:px-8">
+      <NathScrollReveal
+        className="mx-auto max-w-[1200px] px-4 py-18 sm:px-6 sm:py-24 lg:px-8"
+        distance={26}
+      >
         {eyebrow ? <NathSectionEyebrow>{eyebrow}</NathSectionEyebrow> : null}
         <h1 className="mt-6 max-w-3xl text-4xl font-black tracking-[-0.04em] text-[#032549] sm:text-6xl">
           {title}
@@ -35,7 +39,7 @@ export function NathPageHero({
             {intro}
           </p>
         ) : null}
-      </div>
+      </NathScrollReveal>
     </section>
   );
 }

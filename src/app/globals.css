@@ -160,3 +160,25 @@ html {
     rgba(240, 220, 190, 0.9) 100%
   );
 }
+
+.nath-scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance, 32px), 0) scale(0.985);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.nath-scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nath-scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

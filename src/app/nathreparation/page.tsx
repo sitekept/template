@@ -2,6 +2,7 @@ import { CalendarDays } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 
+import { NathScrollReveal } from "@/components/nathreparation/scroll-reveal";
 import {
   NathCtaButton,
   NathInlineLink,
@@ -31,8 +32,8 @@ export default function NathReparationHomePage() {
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(2,34,67,0.88),rgba(4,79,122,0.68))]" />
         </div>
 
-          <div className="relative mx-auto grid max-w-[1200px] gap-14 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8 lg:py-24">
-          <div className="text-white">
+        <div className="relative mx-auto grid max-w-[1200px] gap-14 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8 lg:py-24">
+          <NathScrollReveal className="text-white" distance={22}>
             <div className="mt-6 space-y-2">
               {nathHome.heroLines.map((line) => (
                 <p
@@ -64,9 +65,9 @@ export default function NathReparationHomePage() {
                 </NathCtaButton>
               </div>
             </div>
-          </div>
+          </NathScrollReveal>
 
-          <div className="relative">
+          <NathScrollReveal className="relative" delay={120} distance={28}>
             <div className="relative mx-auto max-w-[520px] rounded-[36px] border border-white/14 bg-white/10 p-6 shadow-[0_34px_100px_rgba(2,34,67,0.3)] backdrop-blur sm:p-8">
               <div className="absolute -left-5 top-10 hidden rounded-3xl border border-white/14 bg-white/12 px-4 py-3 text-sm font-semibold text-white sm:block">
                 7j/7, 24h/24
@@ -85,18 +86,25 @@ export default function NathReparationHomePage() {
                 />
               </div>
             </div>
-          </div>
+          </NathScrollReveal>
         </div>
       </section>
 
       <section className="mx-auto max-w-[900px] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <NathVideoCard image={nathHome.videoImage} href={nathHome.videoHref} />
+        <NathScrollReveal distance={36}>
+          <NathVideoCard
+            image={nathHome.videoImage}
+            href={nathHome.videoHref}
+          />
+        </NathScrollReveal>
       </section>
 
       <section className="mx-auto max-w-[1200px] space-y-18 px-4 py-6 sm:px-6 lg:px-8 lg:space-y-24 lg:py-10">
         {nathHome.serviceSections.map((section, index) => (
-          <div
+          <NathScrollReveal
             key={section.title}
+            delay={index * 90}
+            distance={40}
             className={`grid gap-10 lg:grid-cols-2 lg:items-center ${
               index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
             }`}
@@ -128,12 +136,13 @@ export default function NathReparationHomePage() {
                 </NathInlineLink>
               </div>
             </div>
-          </div>
+          </NathScrollReveal>
         ))}
       </section>
 
       <section className="mx-auto max-w-[1200px] px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-        <div className="rounded-[36px] border border-[#032549]/8 bg-white p-6 shadow-[0_30px_90px_rgba(3,37,73,0.08)] sm:p-8 lg:p-10">
+        <NathScrollReveal distance={42}>
+          <div className="rounded-[36px] border border-[#032549]/8 bg-white p-6 shadow-[0_30px_90px_rgba(3,37,73,0.08)] sm:p-8 lg:p-10">
           <div className="max-w-3xl">
             <NathSectionEyebrow>{nathHome.testimonialsIntro}</NathSectionEyebrow>
             <h2 className="mt-5 text-3xl font-black tracking-[-0.03em] text-[#032549] sm:text-5xl">
@@ -142,8 +151,10 @@ export default function NathReparationHomePage() {
           </div>
           <div className="mt-10 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {nathHome.testimonials.map((item) => (
-              <article
+              <NathScrollReveal
                 key={`${item.name}-${item.service}`}
+                delay={40}
+                distance={24}
                 className="rounded-[28px] border border-[#032549]/8 bg-[#f8fbff] p-6 transition-transform duration-300 hover:-translate-y-1"
               >
                 <NathStars />
@@ -154,23 +165,26 @@ export default function NathReparationHomePage() {
                   {item.name}
                 </p>
                 <p className="text-sm text-[#044f7a]">{item.service}</p>
-              </article>
+              </NathScrollReveal>
             ))}
           </div>
-        </div>
+          </div>
+        </NathScrollReveal>
       </section>
 
       <section className="mx-auto max-w-[1200px] px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="mb-10 max-w-3xl">
+        <NathScrollReveal className="mb-10 max-w-3xl" distance={34}>
           <NathSectionEyebrow>{nathHome.galleryIntro}</NathSectionEyebrow>
           <h2 className="mt-5 text-3xl font-black tracking-[-0.03em] text-[#032549] sm:text-5xl">
             {nathHome.galleryTitle}
           </h2>
-        </div>
+        </NathScrollReveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {nathHome.galleryImages.map((image, index) => (
-            <div
+            <NathScrollReveal
               key={image}
+              delay={(index % 4) * 70}
+              distance={24}
               className="group relative aspect-[0.88] overflow-hidden rounded-[24px] border border-[#032549]/8 bg-white shadow-[0_18px_40px_rgba(3,37,73,0.06)]"
             >
               <Image
@@ -180,7 +194,7 @@ export default function NathReparationHomePage() {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 1024px) 50vw, 25vw"
               />
-            </div>
+            </NathScrollReveal>
           ))}
         </div>
       </section>
