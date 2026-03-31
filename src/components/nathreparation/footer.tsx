@@ -1,7 +1,13 @@
 import { Facebook, Instagram, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-import { nathFooter, nathPhone, nathSocials } from "@/lib/nathreparation-data";
+import {
+  nathFooter,
+  nathNavigation,
+  nathPhone,
+  nathSocials,
+} from "@/lib/nathreparation-data";
 
 function SocialIcon({ label }: { label: string }) {
   if (label === "Facebook") {
@@ -14,7 +20,7 @@ function SocialIcon({ label }: { label: string }) {
 export function NathFooter() {
   return (
     <footer className="bg-[linear-gradient(135deg,#022243_0%,#002359_100%)] text-white">
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
+      <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr_0.8fr_0.9fr] lg:px-8">
         <div>
           <div className="relative h-10 w-[230px]">
             <Image
@@ -45,6 +51,21 @@ export function NathFooter() {
         </div>
 
         <div>
+          <h2 className="text-xl font-semibold">Navigation</h2>
+          <div className="mt-5 flex flex-col gap-3">
+            {nathNavigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="inline-flex items-center rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-sm font-medium text-white/80 transition-colors hover:bg-white hover:text-[#032549]"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div>
           <h2 className="text-xl font-semibold">Nos interventions</h2>
           <div className="mt-5 space-y-3 text-sm leading-7 text-white/75">
             {nathFooter.interventions.map((item) => (
@@ -64,7 +85,23 @@ export function NathFooter() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-[1200px] flex-col gap-3 px-4 py-5 text-xs text-white/60 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p>{nathFooter.copyright}</p>
+          <div className="space-y-2">
+            <p>{nathFooter.copyright}</p>
+            <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-white/45">
+              <button
+                type="button"
+                className="transition-colors hover:text-white/80"
+              >
+                CGU
+              </button>
+              <button
+                type="button"
+                className="transition-colors hover:text-white/80"
+              >
+                CGV
+              </button>
+            </div>
+          </div>
           <a
             href="tel:0618186868"
             className="inline-flex items-center gap-2 font-semibold text-white"
