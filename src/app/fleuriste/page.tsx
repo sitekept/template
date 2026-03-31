@@ -1,364 +1,245 @@
 import {
-  Award,
+  ArrowRight,
   Calendar,
-  Clock,
   Flower,
-  Gift,
-  Heart,
   Mail,
   MapPin,
   Phone,
   Sparkles,
   Star,
-  Users,
 } from "lucide-react";
 import Link from "next/link";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Button } from "@/components/ui/button";
 
+const floralStories = [
+  {
+    eyebrow: "Mariages",
+    title: "Des fleurs pensées comme une mise en scène sensible.",
+    description:
+      "Bouquet, cérémonie, dîner, détails de table et silhouettes florales: chaque ensemble est composé comme un récit visuel cohérent plutôt que comme une simple sélection de produits.",
+    image:
+      "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    eyebrow: "Réceptions privées",
+    title: "Une esthétique plus intime, plus texturée, plus vivante.",
+    description:
+      "Nous jouons les couleurs, les volumes et les respirations pour créer des tables, des entrées et des décors qui élèvent tout de suite la perception d’un lieu.",
+    image:
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    eyebrow: "Marques & lieux",
+    title: "Un fleurissement de marque qui soutient vraiment l’image.",
+    description:
+      "Studios, hôtels, boutiques et lancements de collection: les compositions servent l’univers visuel, la photo et l’expérience sur place avec un vrai sens du rythme.",
+    image:
+      "https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1400&q=80",
+  },
+] as const;
+
+const studioNotes = [
+  "Palette pensée autour de votre lieu et de votre lumière.",
+  "Sélection saisonnière pour un rendu plus juste et plus vivant.",
+  "Installation sur site avec regard direction artistique.",
+] as const;
+
+const gallery = [
+  "https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=900&q=80",
+] as const;
+
+const testimonials = [
+  {
+    name: "Claire & Hugo",
+    role: "Mariage au château",
+    text: "Tout semblait naturel, élégant, parfaitement à sa place. On avait l’impression que le lieu avait toujours dû ressembler à ça.",
+  },
+  {
+    name: "Maison Orphée",
+    role: "Lancement de marque",
+    text: "Le studio a créé une ambiance immédiatement premium. Les compositions tenaient autant du décor que du langage visuel.",
+  },
+] as const;
+
 export default function Fleuriste() {
   return (
-    <div className="min-h-screen bg-green-50">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 shadow-sm backdrop-blur-sm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center">
-              <Flower className="mr-2 h-8 w-8 text-green-600" />
-              <span className="font-serif text-2xl font-bold text-green-800">
+    <div className="min-h-screen bg-[#f4efe8] text-[#314038]">
+      <nav className="sticky top-0 z-50 border-b border-[#ddd3c7] bg-[#f4efe8]/90 backdrop-blur">
+        <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-6 px-4 py-4 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-8">
+          <div className="flex items-center gap-3">
+            <Flower className="h-5 w-5 text-[#6f8672]" />
+            <div>
+              <p className="font-serif text-2xl font-semibold text-[#314038]">
                 Fleurs d&apos;Émeraude
-              </span>
+              </p>
+              <p className="text-xs uppercase tracking-[0.3em] text-[#8f7561]">
+                Atelier floral
+              </p>
             </div>
-            <div className="hidden space-x-8 md:flex">
-              <a
-                href="#accueil"
-                className="text-green-800 transition-colors hover:text-rose-500"
-              >
-                Accueil
-              </a>
-              <a
-                href="#compositions"
-                className="text-green-800 transition-colors hover:text-rose-500"
-              >
-                Compositions
-              </a>
-              <a
-                href="#apropos"
-                className="text-green-800 transition-colors hover:text-rose-500"
-              >
-                À propos
-              </a>
-              <a
-                href="#galerie"
-                className="text-green-800 transition-colors hover:text-rose-500"
-              >
-                Galerie
-              </a>
-              <a
-                href="#contact"
-                className="text-green-800 transition-colors hover:text-rose-500"
-              >
-                Contact
-              </a>
-            </div>
+          </div>
+
+          <div className="hidden items-center justify-center gap-8 lg:flex">
+            <a href="#accueil" className="text-sm hover:text-[#8f7561]">
+              Édito
+            </a>
+            <a href="#projets" className="text-sm hover:text-[#8f7561]">
+              Projets
+            </a>
+            <a href="#atelier" className="text-sm hover:text-[#8f7561]">
+              Atelier
+            </a>
+            <a href="#contact" className="text-sm hover:text-[#8f7561]">
+              Contact
+            </a>
+          </div>
+
+          <div className="justify-self-end">
+            <Link href="#contact">
+              <Button className="bg-[#314038] text-white hover:bg-[#243029]">
+                Demander un devis
+              </Button>
+            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section
-        id="accueil"
-        className="relative flex h-screen items-center justify-center overflow-hidden"
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=2000&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-green-50/80" />
-        <ScrollReveal
-          className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
-          distance={24}
-        >
-          <div className="mb-6 flex items-center justify-center">
-            <Sparkles className="mr-3 h-8 w-8 text-rose-400" />
-            <span className="text-lg font-medium text-rose-500">
-              Artisan Fleuriste depuis 1992
-            </span>
-            <Sparkles className="ml-3 h-8 w-8 text-rose-400" />
-          </div>
-          <h1 className="mb-6 font-serif text-6xl font-bold text-white drop-shadow-lg sm:text-7xl lg:text-8xl">
-            Fleurs
-            <span className="block text-rose-400">d&apos;Émeraude</span>
-          </h1>
-          <p className="mx-auto mb-8 max-w-3xl text-xl text-white/90 sm:text-2xl">
-            L&apos;art floral à l&apos;état pur. Chaque bouquet raconte une
-            histoire, chaque composition exprime vos émotions les plus
-            profondes.
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="#compositions">
-              <Button
-                size="lg"
-                className="bg-rose-500 px-8 py-3 text-lg font-medium text-white hover:bg-rose-600"
-              >
-                Découvrir nos créations
-              </Button>
-            </Link>
-            <Link href="#contact">
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white px-8 py-3 text-white hover:bg-white hover:text-green-800"
-              >
-                Commander maintenant
-              </Button>
-            </Link>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Compositions Section */}
-      <section id="compositions" className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={28}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-green-800 sm:text-5xl">
-              Nos compositions florales
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-              Découvrez notre gamme complète de créations florales, chacune
-              conçue avec passion et réalisée avec des fleurs fraîches
-              sélectionnées pour leur beauté et leur qualité.
+      <section id="accueil" className="border-b border-[#ddd3c7]">
+        <div className="mx-auto max-w-7xl px-4 pb-14 pt-12 sm:px-6 lg:px-8 lg:pb-20 lg:pt-16">
+          <ScrollReveal distance={18} className="mx-auto max-w-5xl text-center">
+            <div className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-[#d8cdc0] bg-white/70 px-3 py-1.5 text-xs text-[#8f7561] sm:text-sm">
+              <Sparkles className="h-4 w-4" />
+              Studio floral mariages, réceptions et marques
+            </div>
+            <h1 className="mx-auto mt-8 max-w-4xl font-serif text-5xl font-semibold leading-none text-[#314038] sm:text-6xl lg:text-8xl">
+              Une template qui se lit comme un
+              <span className="block text-[#b67a84]">portfolio éditorial</span>
+              et non comme une boutique locale.
+            </h1>
+            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[#57665d] sm:text-xl">
+              L’objectif ici est de vendre une direction artistique, une sensibilité
+              et une capacité à sublimer un événement. La structure assume la
+              narration, l’image et la respiration.
             </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link href="#projets">
+                <Button className="bg-[#314038] px-5 text-sm text-white hover:bg-[#243029]">
+                  Explorer les projets
+                </Button>
+              </Link>
+              <Link href="#contact">
+                <Button
+                  variant="outline"
+                  className="border-[#cbb9a5] bg-white px-5 text-sm text-[#314038] hover:bg-[#f8f3ec]"
+                >
+                  Réserver un rendez-vous
+                </Button>
+              </Link>
+            </div>
           </ScrollReveal>
 
-          {/* Catégories de fleurs */}
-          <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <ScrollReveal className="space-y-8" distance={32}>
-              <h3 className="mb-6 font-serif text-2xl font-semibold text-green-800">
-                Bouquets & Compositions
-              </h3>
-              {[
-                {
-                  name: "Bouquet Romantique",
-                  description:
-                    "Roses rouges, pivoines blanches, eucalyptus et verdure de saison",
-                  price: "65€",
-                  image:
-                    "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Composition Champêtre",
-                  description:
-                    "Tournesols, lavande, blé et fleurs des champs dans un panier osier",
-                  price: "45€",
-                  image:
-                    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Orchidée Élégance",
-                  description:
-                    "Orchidées phalaenopsis dans un vase contemporain avec mousse végétale",
-                  price: "85€",
-                  image:
-                    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=400&q=80",
-                },
-              ].map((item, index) => (
-                <ScrollReveal
-                  key={index}
-                  delay={index * 85}
-                  distance={22}
-                  className="flex items-center space-x-4 rounded-lg bg-green-50/50 p-4"
-                >
-                  <div
-                    className="h-20 w-20 rounded-lg bg-cover bg-center"
-                    style={{ backgroundImage: `url('${item.image}')` }}
-                  />
-                  <div className="flex-1">
-                    <h4 className="font-serif text-lg font-semibold text-green-800">
-                      {item.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                  <div className="text-lg font-bold text-rose-500">
-                    {item.price}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </ScrollReveal>
+          <ScrollReveal
+            delay={90}
+            distance={18}
+            className="mt-12 grid gap-4 lg:grid-cols-[0.8fr_1.15fr_0.8fr]"
+          >
+            <div className="grid gap-4">
+              <div className="rounded-[30px] border border-[#ddd3c7] bg-white p-6 shadow-[0_18px_50px_rgba(63,53,43,0.05)]">
+                <p className="text-sm uppercase tracking-[0.22em] text-[#8f7561]">
+                  Vision
+                </p>
+                <p className="mt-4 font-serif text-3xl leading-tight text-[#314038]">
+                  Des fleurs pensées pour le regard, le lieu et la mémoire visuelle.
+                </p>
+              </div>
+              <div
+                className="min-h-[260px] rounded-[30px] bg-cover bg-center"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80')",
+                }}
+              />
+            </div>
 
-            <ScrollReveal className="space-y-8" delay={120} distance={32}>
-              <h3 className="mb-6 font-serif text-2xl font-semibold text-green-800">
-                Plantes & Jardinières
-              </h3>
-              {[
-                {
-                  name: "Jardinière de Saison",
-                  description:
-                    "Mélange harmonieux de plantes fleuries selon la saison",
-                  price: "35€",
-                  image:
-                    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Plante Verte d'Intérieur",
-                  description:
-                    "Monstera, ficus ou palmier dans un cache-pot décoratif",
-                  price: "28€",
-                  image:
-                    "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Cactus & Succulentes",
-                  description:
-                    "Composition de plantes grasses dans un terrarium design",
-                  price: "22€",
-                  image:
-                    "https://images.unsplash.com/photo-1509423350716-97f2360af3e4?auto=format&fit=crop&w=400&q=80",
-                },
-              ].map((item, index) => (
-                <ScrollReveal
-                  key={index}
-                  delay={index * 85}
-                  distance={22}
-                  className="flex items-center space-x-4 rounded-lg bg-green-50/50 p-4"
-                >
-                  <div
-                    className="h-20 w-20 rounded-lg bg-cover bg-center"
-                    style={{ backgroundImage: `url('${item.image}')` }}
-                  />
-                  <div className="flex-1">
-                    <h4 className="font-serif text-lg font-semibold text-green-800">
-                      {item.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                  <div className="text-lg font-bold text-rose-500">
-                    {item.price}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </ScrollReveal>
-          </div>
+            <div
+              className="min-h-[640px] rounded-[36px] bg-cover bg-center shadow-[0_30px_90px_rgba(63,53,43,0.12)]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, rgba(49,64,56,0.06), rgba(49,64,56,0.2)), url('https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=1600&q=80')",
+              }}
+            />
+
+            <div className="grid gap-4">
+              <div
+                className="min-h-[240px] rounded-[30px] bg-cover bg-center"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1200&q=80')",
+                }}
+              />
+              <div className="rounded-[30px] bg-[#314038] p-6 text-white shadow-[0_18px_50px_rgba(63,53,43,0.12)]">
+                <p className="text-sm uppercase tracking-[0.22em] text-[#dbc9b8]">
+                  Positionnement
+                </p>
+                <p className="mt-4 text-base leading-8 text-white/82">
+                  Cette page vend du sur-mesure haut de gamme. Aucun ton “commerce
+                  de quartier”, aucun bloc utilitaire en vitrine: tout est pensé
+                  pour évoquer un atelier créatif et premium.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* À propos Section */}
-      <section id="apropos" className="bg-green-800 py-20 text-white">
+      <section id="projets" className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <ScrollReveal distance={34}>
-              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl">
-                Une passion florale depuis 1992
-              </h2>
-              <p className="mb-6 text-lg">
-                Fondée par Maître Floraliste Isabelle Verdier, notre boutique
-                cultive l&apos;art floral depuis plus de 30 ans. Chaque jour,
-                nous sélectionnons les plus belles fleurs pour créer des
-                compositions uniques qui subliment vos moments précieux.
-              </p>
-              <p className="mb-8 text-lg">
-                Spécialisés dans les créations sur mesure, nous travaillons avec
-                des producteurs locaux et importons directement des marchés aux
-                fleurs internationaux pour vous offrir la fraîcheur et la
-                qualité exceptionnelles que vous méritez.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center">
-                  <Award className="mx-auto mb-2 h-12 w-12 text-rose-400" />
-                  <div className="text-2xl font-bold text-rose-400">12+</div>
-                  <div className="text-sm">Prix & Reconnaissances</div>
-                </div>
-                <div className="text-center">
-                  <Users className="mx-auto mb-2 h-12 w-12 text-rose-400" />
-                  <div className="text-2xl font-bold text-rose-400">8000+</div>
-                  <div className="text-sm">Clients heureux</div>
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal className="relative" delay={140} distance={38}>
-              <div className="aspect-square overflow-hidden rounded-lg shadow-2xl">
-                <div
-                  className="h-full w-full bg-cover bg-center"
-                  style={{
-                    backgroundImage:
-                      "url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=800&q=80')",
-                  }}
-                />
-              </div>
-              <div className="absolute -right-6 -bottom-6 rounded-lg bg-rose-500 p-6 text-white shadow-lg">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">32</div>
-                  <div className="text-sm font-medium">
-                    Années d&apos;expertise
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Témoignages */}
-      <section className="bg-green-50 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={28}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-green-800 sm:text-5xl">
-              Ce que disent nos clients
+          <ScrollReveal distance={18} className="max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#8f7561]">
+              Projets & univers
+            </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#314038] sm:text-5xl lg:text-6xl">
+              Des bandes éditoriales qui racontent une approche plus qu’un catalogue.
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                name: "Claire Moreau",
-                text: "Des compositions florales d&apos;une beauté époustouflante ! Le bouquet de mariage était exactement ce dont je rêvais. Service impeccable.",
-                rating: 5,
-                event: "Mariage",
-              },
-              {
-                name: "Thomas Dubois",
-                text: "Je commande régulièrement pour offrir à ma femme. Les fleurs sont toujours fraîches et les arrangements sublimes. Très professionnel.",
-                rating: 5,
-                event: "Client fidèle",
-              },
-              {
-                name: "Marie Lefevre",
-                text: "Livraison ponctuelle et bouquet magnifique pour l'anniversaire de ma mère. Elle était aux anges ! Je recommande vivement.",
-                rating: 5,
-                event: "Anniversaire",
-              },
-            ].map((testimonial, index) => (
+
+          <div className="mt-14 space-y-10">
+            {floralStories.map((story, index) => (
               <ScrollReveal
-                key={index}
-                delay={index * 95}
-                distance={24}
-                className="rounded-lg bg-white p-8 shadow-lg"
+                key={story.title}
+                delay={index * 80}
+                distance={18}
+                className={`grid gap-6 overflow-hidden rounded-[36px] border border-[#e3d9cd] bg-[#f8f3ec] p-5 lg:grid-cols-[1.05fr_0.95fr] lg:p-7 ${
+                  index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
               >
-                <div className="mb-4 flex items-center">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 fill-current text-rose-500"
-                    />
-                  ))}
-                </div>
-                <p className="mb-6 text-muted-foreground italic">
-                  &quot;{testimonial.text}&quot;
-                </p>
-                <div>
-                  <div className="font-semibold text-green-800">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-rose-500">
-                    {testimonial.event}
-                  </div>
+                <div
+                  className="min-h-[380px] rounded-[30px] bg-cover bg-center"
+                  style={{ backgroundImage: `url('${story.image}')` }}
+                />
+                <div className="flex flex-col justify-center p-2 sm:p-6">
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#b67a84]">
+                    {story.eyebrow}
+                  </p>
+                  <h3 className="mt-4 font-serif text-4xl font-semibold leading-tight text-[#314038]">
+                    {story.title}
+                  </h3>
+                  <p className="mt-5 max-w-xl text-base leading-8 text-[#57665d]">
+                    {story.description}
+                  </p>
+                  <Link
+                    href="#contact"
+                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#314038]"
+                  >
+                    Échanger sur ce type de projet
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
               </ScrollReveal>
             ))}
@@ -366,36 +247,71 @@ export default function Fleuriste() {
         </div>
       </section>
 
-      {/* Galerie */}
-      <section id="galerie" className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={28}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-green-800 sm:text-5xl">
-              Galerie florale
+      <section id="atelier" className="border-y border-[#ddd3c7] bg-[#efe6dc] py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <ScrollReveal distance={18}>
+            <p className="text-sm uppercase tracking-[0.24em] text-[#8f7561]">
+              Atelier
+            </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#314038] sm:text-5xl">
+              Une section pensée comme une note de studio, pas comme une liste de services.
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Un aperçu de nos plus belles créations florales
+            <p className="mt-6 max-w-md text-base leading-8 text-[#57665d]">
+              Là où `boulangerie` pousse l’efficacité, `fleuriste` assume la
+              direction artistique: plus d’espace, plus de récit, plus de mise
+              en scène, moins de blocs “utilitaires”.
             </p>
           </ScrollReveal>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {[
-              "https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1509423350716-97f2360af3e4?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=500&q=80",
-            ].map((image, index) => (
+
+          <div className="grid gap-4">
+            {studioNotes.map((note, index) => (
               <ScrollReveal
-                key={index}
-                delay={(index % 4) * 80}
-                distance={20}
-                className="aspect-square overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-xl"
+                key={note}
+                delay={index * 90}
+                distance={18}
+                className="rounded-[30px] border border-white/60 bg-white/80 p-7 shadow-[0_18px_50px_rgba(63,53,43,0.05)]"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#314038] text-sm font-semibold text-white">
+                    0{index + 1}
+                  </div>
+                  <p className="pt-1 text-base leading-8 text-[#4f5f56]">{note}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal distance={18} className="max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#8f7561]">
+              Galerie
+            </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#314038] sm:text-5xl">
+              Un rythme visuel plus libre, plus proche d’un moodboard de studio.
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+            {gallery.map((image, index) => (
+              <ScrollReveal
+                key={image}
+                delay={(index % 3) * 70}
+                distance={18}
+                className={`overflow-hidden rounded-[28px] ${
+                  index === 0 || index === 4
+                    ? "lg:col-span-7"
+                    : index === 1 || index === 3
+                      ? "lg:col-span-5"
+                      : "lg:col-span-4"
+                } ${index === 0 || index === 2 ? "lg:row-span-2" : ""}`}
               >
                 <div
-                  className="h-full w-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
+                  className={`bg-cover bg-center transition-transform duration-500 hover:scale-[1.03] ${
+                    index === 0 || index === 2 ? "h-[420px]" : "h-[260px]"
+                  }`}
                   style={{ backgroundImage: `url('${image}')` }}
                 />
               </ScrollReveal>
@@ -404,194 +320,139 @@ export default function Fleuriste() {
         </div>
       </section>
 
-      {/* Services & Événements */}
-      <section className="bg-rose-500 py-20">
+      <section className="bg-[#314038] py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={28}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-white sm:text-5xl">
-              Services personnalisés
-            </h2>
-            <p className="text-xl text-white/90">
-              Nous créons l&apos;atmosphère florale parfaite pour tous vos
-              événements
+          <ScrollReveal distance={18} className="mx-auto max-w-4xl text-center">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#dbc9b8]">
+              Témoignages
             </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold sm:text-5xl">
+              Une preuve sociale qui prolonge l’univers, pas un simple bloc d’avis.
+            </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                icon: Heart,
-                title: "Mariages",
-                description:
-                  "Bouquets de mariée, compositions d&apos;église et décoration florale complète",
-              },
-              {
-                icon: Gift,
-                title: "Événements privés",
-                description:
-                  "Anniversaires, fêtes et célébrations avec créations florales sur mesure",
-              },
-              {
-                icon: Calendar,
-                title: "Entreprises",
-                description:
-                  "Décoration florale de bureaux, événements corporate et réceptions",
-              },
-            ].map((service, index) => (
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {testimonials.map((item, index) => (
               <ScrollReveal
-                key={index}
-                delay={index * 90}
-                distance={24}
-                className="rounded-lg bg-white/10 p-8 text-center backdrop-blur-sm"
+                key={item.name}
+                delay={index * 80}
+                distance={18}
+                className="rounded-[32px] border border-white/10 bg-white/8 p-8 backdrop-blur"
               >
-                <service.icon className="mx-auto mb-6 h-16 w-16 text-white" />
-                <h3 className="mb-4 font-serif text-2xl font-semibold text-white">
-                  {service.title}
-                </h3>
-                <p className="text-white/90">{service.description}</p>
+                <div className="flex gap-1 text-[#efc4ca]">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <Star key={starIndex} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <p className="mt-6 text-xl leading-9 text-white/84">
+                  &quot;{item.text}&quot;
+                </p>
+                <div className="mt-6">
+                  <p className="font-semibold">{item.name}</p>
+                  <p className="text-sm text-white/64">{item.role}</p>
+                </div>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact & Informations pratiques */}
-      <section id="contact" className="bg-green-800 py-20 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <ScrollReveal distance={30}>
-              <h2 className="mb-8 font-serif text-4xl font-bold sm:text-5xl">
-                Visitez notre boutique
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <MapPin className="mt-1 h-6 w-6 text-rose-400" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">Adresse</h3>
-                    <p className="text-white/80">
-                      45 Avenue des Jardins
-                      <br />
-                      69003 Lyon, France
-                    </p>
+      <section id="contact" className="bg-[#f4efe8] py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal
+            distance={18}
+            className="rounded-[38px] border border-[#ddd3c7] bg-white p-8 shadow-[0_22px_60px_rgba(63,53,43,0.06)] sm:p-10"
+          >
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <p className="text-sm uppercase tracking-[0.24em] text-[#8f7561]">
+                  Contact studio
+                </p>
+                <h2 className="mt-3 font-serif text-4xl font-semibold text-[#314038] sm:text-5xl">
+                  Réserver une conversation créative.
+                </h2>
+                <div className="mt-8 space-y-5 text-sm leading-7 text-[#57665d]">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="mt-1 h-4 w-4 text-[#b67a84]" />
+                    <span>45 Avenue des Jardins, 69003 Lyon</span>
                   </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Clock className="mt-1 h-6 w-6 text-rose-400" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">
-                      Horaires d&apos;ouverture
-                    </h3>
-                    <div className="space-y-1 text-white/80">
-                      <p>Lundi - Samedi : 8h00 - 19h00</p>
-                      <p>Dimanche : 9h00 - 12h00</p>
-                      <p className="text-rose-400">Fermé les jours fériés</p>
-                    </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="mt-1 h-4 w-4 text-[#b67a84]" />
+                    <span>04 78 95 12 34</span>
                   </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Phone className="mt-1 h-6 w-6 text-rose-400" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">Téléphone</h3>
-                    <p className="text-white/80">04 78 95 12 34</p>
+                  <div className="flex items-start gap-3">
+                    <Mail className="mt-1 h-4 w-4 text-[#b67a84]" />
+                    <span>contact@fleurs-emeraude.fr</span>
                   </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Mail className="mt-1 h-6 w-6 text-rose-400" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">Email</h3>
-                    <p className="text-white/80">contact@fleurs-emeraude.fr</p>
+                  <div className="flex items-start gap-3">
+                    <Calendar className="mt-1 h-4 w-4 text-[#b67a84]" />
+                    <span>Rendez-vous conseil sous 24h ouvrées</span>
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={110} distance={30}>
-              <h3 className="mb-6 font-serif text-2xl font-semibold">
-                Commandez vos fleurs
-              </h3>
-              <p className="mb-8 text-white/80">
-                Passez votre commande dès maintenant. Nous préparons vos
-                bouquets avec soin. Commande recommandée 24h à l&apos;avance
-                pour les compositions sur mesure.
-              </p>
-              <div className="space-y-4">
-                <Button
-                  size="lg"
-                  className="w-full bg-rose-500 text-white hover:bg-rose-600"
-                >
-                  Commander en ligne
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full border-white text-white hover:bg-white hover:text-green-800"
-                >
-                  Demander un devis
-                </Button>
+
+              <div className="rounded-[30px] bg-[#e7d6c5] p-7">
+                <p className="text-sm uppercase tracking-[0.24em] text-[#8f7561]">
+                  Ce que vend ce template
+                </p>
+                <p className="mt-4 text-base leading-8 text-[#3f5047]">
+                  Un atelier floral haut de gamme, des projets sur mesure, une
+                  lecture éditoriale, des images mises en scène et un rapport plus
+                  sensible au client. C’est volontairement à l’opposé du rythme
+                  commerçant de `boulangerie`.
+                </p>
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Button size="lg" className="bg-[#314038] text-white hover:bg-[#243029]">
+                    Demander un devis
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-[#314038] bg-transparent text-[#314038] hover:bg-white/60"
+                  >
+                    Planifier un appel
+                  </Button>
+                </div>
               </div>
-              <p className="mt-6 text-sm text-white/60">
-                * Livraison gratuite dans Lyon et communes limitrophes
-              </p>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t bg-white py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <ScrollReveal distance={20}>
-              <div className="mb-4 flex items-center">
-                <Flower className="mr-2 h-8 w-8 text-green-600" />
-                <span className="font-serif text-2xl font-bold text-green-800">
-                  Fleurs d&apos;Émeraude
-                </span>
-              </div>
-              <p className="text-muted-foreground">
-                L&apos;art floral depuis 1992. Créations florales
-                d&apos;exception pour tous vos moments précieux.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={80} distance={20}>
-              <h4 className="mb-4 font-semibold text-green-800">
-                Liens rapides
-              </h4>
-              <div className="space-y-2">
-                <a
-                  href="#compositions"
-                  className="block text-muted-foreground hover:text-green-800"
-                >
-                  Nos compositions
-                </a>
-                <a
-                  href="#apropos"
-                  className="block text-muted-foreground hover:text-green-800"
-                >
-                  À propos
-                </a>
-                <a
-                  href="#galerie"
-                  className="block text-muted-foreground hover:text-green-800"
-                >
-                  Galerie
-                </a>
-                <a
-                  href="#contact"
-                  className="block text-muted-foreground hover:text-green-800"
-                >
-                  Contact
-                </a>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={160} distance={20}>
-              <h4 className="mb-4 font-semibold text-green-800">Suivez-nous</h4>
-              <p className="mb-4 text-muted-foreground">
-                Découvrez nos nouvelles créations et conseils floraux sur nos
-                réseaux sociaux.
-              </p>
-              <div className="text-sm text-muted-foreground">
-                © 2024 Fleurs d&apos;Émeraude. Tous droits réservés.
-              </div>
-            </ScrollReveal>
+      <footer className="border-t border-[#ddd3c7] bg-white py-12">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
+          <div>
+            <div className="flex items-center gap-3">
+              <Flower className="h-5 w-5 text-[#6f8672]" />
+              <span className="font-serif text-2xl font-semibold text-[#314038]">
+                Fleurs d&apos;Émeraude
+              </span>
+            </div>
+            <p className="mt-4 text-sm leading-7 text-[#57665d]">
+              Atelier floral éditorial pour mariages, réceptions privées et
+              projets de marque.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-[#314038]">Navigation</p>
+            <div className="mt-4 space-y-2 text-sm text-[#57665d]">
+              <a href="#projets" className="block hover:text-[#8f7561]">
+                Projets
+              </a>
+              <a href="#atelier" className="block hover:text-[#8f7561]">
+                Atelier
+              </a>
+              <a href="#contact" className="block hover:text-[#8f7561]">
+                Contact
+              </a>
+            </div>
+          </div>
+          <div>
+            <p className="font-semibold text-[#314038]">Narration</p>
+            <p className="mt-4 text-sm leading-7 text-[#57665d]">
+              Une structure magazine et portfolio, plus contemplative et plus
+              haut de gamme que les templates centrées utilité.
+            </p>
           </div>
         </div>
       </footer>

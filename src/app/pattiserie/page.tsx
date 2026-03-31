@@ -1,361 +1,224 @@
 import {
-  Award,
+  ArrowRight,
   Calendar,
   ChefHat,
   Clock,
-  Gift,
-  Heart,
   Mail,
   MapPin,
   Phone,
   Sparkles,
   Star,
-  Users,
 } from "lucide-react";
 import Link from "next/link";
 
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Button } from "@/components/ui/button";
 
+const collections = [
+  {
+    title: "Entremets signature",
+    note: "Des pièces pensées comme des collections saisonnières.",
+    description:
+      "Montages précis, textures nettes, glaçages lumineux et équilibre des saveurs pour une lecture plus couture que simplement gourmande.",
+    image:
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    title: "Pâtisseries individuelles",
+    note: "Des formats raffinés pour boutique, réception ou gifting.",
+    description:
+      "Éclairs, tartelettes, choux et créations courtes avec finitions propres, silhouettes lisibles et goût de maison.",
+    image:
+      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1400&q=80",
+  },
+] as const;
+
+const signaturePieces = [
+  {
+    name: "Opéra Royal",
+    detail: "Café grand cru, ganache noire, biscuit Joconde.",
+    price: "45€",
+  },
+  {
+    name: "Saint-Honoré Atelier",
+    detail: "Vanille, caramel blond, pâte feuilletée croustillante.",
+    price: "42€",
+  },
+  {
+    name: "Tarte Yuzu",
+    detail: "Agrumes tendus, meringue satinée, pâte fine.",
+    price: "7€",
+  },
+] as const;
+
+const occasions = [
+  "Mariages et pièces de réception",
+  "Anniversaires et commandes sur mesure",
+  "Maisons de luxe, gifting et événements privés",
+] as const;
+
+const testimonials = [
+  {
+    name: "Élise Bernard",
+    role: "Commande mariage",
+    text: "Le gâteau n’était pas seulement excellent, il donnait la tonalité entière de la réception. Une présence presque statutaire.",
+  },
+  {
+    name: "Maison Valmont",
+    role: "Événement privé",
+    text: "Une pâtisserie qui comprend le langage du premium: précision, retenue, élégance et impact immédiat sur table.",
+  },
+] as const;
+
+const gallery = [
+  "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1586985289906-406988974504?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?auto=format&fit=crop&w=1200&q=80",
+] as const;
+
 export default function Pattiserie() {
   return (
-    <div className="min-h-screen bg-cream">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 shadow-sm backdrop-blur-sm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center">
-              <ChefHat className="mr-2 h-8 w-8 text-chocolate" />
-              <span className="font-serif text-2xl font-bold text-chocolate">
+    <div className="min-h-screen bg-[#120d0a] text-[#f6eee6]">
+      <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#120d0a]/92 backdrop-blur">
+        <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-6 px-4 py-4 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-8">
+          <div className="flex items-center gap-3">
+            <ChefHat className="h-5 w-5 text-[#d9b17d]" />
+            <div>
+              <p className="font-serif text-2xl font-semibold text-[#f6eee6]">
                 Pâtisserie Douceur
-              </span>
+              </p>
+              <p className="text-xs uppercase tracking-[0.3em] text-[#b89469]">
+                Maison de création
+              </p>
             </div>
-            <div className="hidden space-x-8 md:flex">
-              <a
-                href="#accueil"
-                className="text-chocolate transition-colors hover:text-gold"
-              >
-                Accueil
-              </a>
-              <a
-                href="#specialites"
-                className="text-chocolate transition-colors hover:text-gold"
-              >
-                Spécialités
-              </a>
-              <a
-                href="#apropos"
-                className="text-chocolate transition-colors hover:text-gold"
-              >
-                À propos
-              </a>
-              <a
-                href="#galerie"
-                className="text-chocolate transition-colors hover:text-gold"
-              >
-                Galerie
-              </a>
-              <a
-                href="#contact"
-                className="text-chocolate transition-colors hover:text-gold"
-              >
-                Contact
-              </a>
-            </div>
+          </div>
+
+          <div className="hidden items-center justify-center gap-8 lg:flex">
+            <a href="#accueil" className="text-sm text-white/72 hover:text-[#d9b17d]">
+              Maison
+            </a>
+            <a href="#collections" className="text-sm text-white/72 hover:text-[#d9b17d]">
+              Collections
+            </a>
+            <a href="#signature" className="text-sm text-white/72 hover:text-[#d9b17d]">
+              Signature
+            </a>
+            <a href="#contact" className="text-sm text-white/72 hover:text-[#d9b17d]">
+              Conciergerie
+            </a>
+          </div>
+
+          <div className="justify-self-end">
+            <Link href="#contact">
+              <Button className="bg-[#d9b17d] text-[#1a120d] hover:bg-[#e4bf8f]">
+                Commander
+              </Button>
+            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section
-        id="accueil"
-        className="relative flex h-screen items-center justify-center overflow-hidden"
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=2000&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-cream/80" />
-        <ScrollReveal
-          className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
-          distance={18}
-        >
-          <div className="mb-6 flex items-center justify-center">
-            <Sparkles className="mr-3 h-8 w-8 text-gold" />
-            <span className="text-lg font-medium text-gold">
-              Artisan Pâtissier depuis 1985
-            </span>
-            <Sparkles className="ml-3 h-8 w-8 text-gold" />
-          </div>
-          <h1 className="mb-6 font-serif text-6xl font-bold text-white drop-shadow-lg sm:text-7xl lg:text-8xl">
-            Pâtisserie
-            <span className="block text-gold">Douceur</span>
-          </h1>
-          <p className="mx-auto mb-8 max-w-3xl text-xl text-white/90 sm:text-2xl">
-            L&apos;art de la pâtisserie française à son apogée. Chaque création
-            est une œuvre d&apos;art gustative, façonnée avec passion et
-            savoir-faire traditionnel.
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link href="#specialites">
-              <Button
-                size="lg"
-                className="bg-gold px-8 py-3 text-lg font-medium text-gold-foreground hover:bg-gold/90"
-              >
-                Découvrir nos créations
-              </Button>
-            </Link>
-            <Link href="#contact">
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white px-8 py-3 text-white hover:bg-white hover:text-chocolate"
-              >
-                Commander maintenant
-              </Button>
-            </Link>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Spécialités Section */}
-      <section id="specialites" className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={22}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-chocolate sm:text-5xl">
-              Nos spécialités d&apos;exception
-            </h2>
-            <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-              Découvrez notre gamme complète de pâtisseries artisanales, chacune
-              préparée avec des ingrédients de première qualité et un
-              savoir-faire transmis de génération en génération.
+      <section id="accueil" className="border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-4 pb-18 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
+          <ScrollReveal distance={18} className="mx-auto max-w-5xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#6f5738] bg-[#1b140f] px-4 py-2 text-sm text-[#d9b17d]">
+              <Sparkles className="h-4 w-4" />
+              Artisan pâtissier depuis 1985
+            </div>
+            <h1 className="mx-auto mt-8 max-w-4xl font-serif text-5xl font-semibold leading-none text-[#f8f1ea] sm:text-6xl lg:text-8xl">
+              Une template pensée comme
+              <span className="block text-[#d9b17d]">une maison premium</span>
+              et non comme un studio ni un commerce local.
+            </h1>
+            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-white/68 sm:text-xl">
+              Ici, la structure vend la rareté, la signature et la précision.
+              On avance par collections, pièces emblématiques, occasions
+              d’exception et service de commande sur mesure.
             </p>
           </ScrollReveal>
 
-          {/* Catégories de pâtisseries */}
-          <div className="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <ScrollReveal className="space-y-8" distance={26}>
-              <h3 className="mb-6 font-serif text-2xl font-semibold text-chocolate">
-                Entremets & Gâteaux
-              </h3>
-              {[
-                {
-                  name: "Opéra Royal",
-                  description:
-                    "Biscuit Joconde, ganache chocolat, crème au beurre café, glaçage miroir",
-                  price: "45€",
-                  image:
-                    "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Fraisier Traditionnel",
-                  description:
-                    "Génoise vanille, crème mousseline, fraises fraîches de saison",
-                  price: "38€",
-                  image:
-                    "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Saint-Honoré Revisité",
-                  description:
-                    "Pâte feuilletée, choux caramélisés, crème Chiboust vanille",
-                  price: "42€",
-                  image:
-                    "https://images.unsplash.com/photo-1586985289906-406988974504?auto=format&fit=crop&w=400&q=80",
-                },
-              ].map((item, index) => (
-                <ScrollReveal
-                  key={index}
-                  delay={index * 60}
-                  distance={18}
-                  className="flex items-center space-x-4 rounded-lg bg-cream/30 p-4"
-                >
-                  <div
-                    className="h-20 w-20 rounded-lg bg-cover bg-center"
-                    style={{ backgroundImage: `url('${item.image}')` }}
-                  />
-                  <div className="flex-1">
-                    <h4 className="font-serif text-lg font-semibold text-chocolate">
-                      {item.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                  <div className="text-lg font-bold text-gold">
-                    {item.price}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </ScrollReveal>
-
-            <ScrollReveal className="space-y-8" delay={90} distance={26}>
-              <h3 className="mb-6 font-serif text-2xl font-semibold text-chocolate">
-                Pâtisseries Individuelles
-              </h3>
-              {[
-                {
-                  name: "Éclair au Chocolat Valrhona",
-                  description:
-                    "Pâte à choux, crème pâtissière chocolat, glaçage fondant",
-                  price: "6€",
-                  image:
-                    "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Tartelette Citron Yuzu",
-                  description:
-                    "Pâte sablée, crème citron-yuzu, meringue italienne flambée",
-                  price: "7€",
-                  image:
-                    "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80",
-                },
-                {
-                  name: "Paris-Brest Praliné",
-                  description:
-                    "Choux pralinés, crème praliné noisette, amandes effilées",
-                  price: "8€",
-                  image:
-                    "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?auto=format&fit=crop&w=400&q=80",
-                },
-              ].map((item, index) => (
-                <ScrollReveal
-                  key={index}
-                  delay={index * 60}
-                  distance={18}
-                  className="flex items-center space-x-4 rounded-lg bg-cream/30 p-4"
-                >
-                  <div
-                    className="h-20 w-20 rounded-lg bg-cover bg-center"
-                    style={{ backgroundImage: `url('${item.image}')` }}
-                  />
-                  <div className="flex-1">
-                    <h4 className="font-serif text-lg font-semibold text-chocolate">
-                      {item.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                  <div className="text-lg font-bold text-gold">
-                    {item.price}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* À propos Section */}
-      <section id="apropos" className="bg-chocolate py-20 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <ScrollReveal distance={26}>
-              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl">
-                Une passion familiale depuis 1985
-              </h2>
-              <p className="mb-6 text-lg">
-                Fondée par Maître Pierre Douceur, notre pâtisserie perpétue un
-                savoir-faire artisanal d&apos;exception depuis près de 40 ans.
-                Chaque jour, notre équipe de passionnés crée des merveilles
-                gustatives qui éveillent les sens et créent des souvenirs
-                inoubliables.
-              </p>
-              <p className="mb-8 text-lg">
-                Récompensés par de nombreux prix prestigieux, nous continuons
-                d&apos;innover tout en respectant les traditions de la
-                pâtisserie française. Notre laboratoire utilise exclusivement
-                des ingrédients de première qualité, sourcés auprès de
-                producteurs locaux.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center">
-                  <Award className="mx-auto mb-2 h-12 w-12 text-gold" />
-                  <div className="text-2xl font-bold text-gold">15+</div>
-                  <div className="text-sm">Prix & Distinctions</div>
-                </div>
-                <div className="text-center">
-                  <Users className="mx-auto mb-2 h-12 w-12 text-gold" />
-                  <div className="text-2xl font-bold text-gold">10000+</div>
-                  <div className="text-sm">Clients satisfaits</div>
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal className="relative" delay={90} distance={30}>
-              <div className="aspect-square overflow-hidden rounded-lg shadow-2xl">
+          <ScrollReveal delay={90} distance={18} className="mt-14">
+            <div className="overflow-hidden rounded-[40px] border border-white/10 bg-[#18110d] p-4 shadow-[0_30px_100px_rgba(0,0,0,0.3)]">
+              <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
                 <div
-                  className="h-full w-full bg-cover bg-center"
+                  className="min-h-[520px] rounded-[32px] bg-cover bg-center"
                   style={{
                     backgroundImage:
-                      "url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80')",
+                      "linear-gradient(180deg, rgba(18,13,10,0.04), rgba(18,13,10,0.28)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1800&q=80')",
                   }}
                 />
-              </div>
-              <div className="absolute -right-6 -bottom-6 rounded-lg bg-gold p-6 text-gold-foreground shadow-lg">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">38</div>
-                  <div className="text-sm font-medium">
-                    Années d&apos;expertise
+                <div className="flex flex-col justify-between rounded-[32px] border border-white/8 bg-[#120d0a] p-8">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.24em] text-[#b89469]">
+                      Maison d&apos;exception
+                    </p>
+                    <h2 className="mt-5 font-serif text-4xl font-semibold text-[#f8f1ea] sm:text-5xl">
+                      Des créations qui tiennent leur place sur une table d’exception.
+                    </h2>
+                    <p className="mt-6 text-base leading-8 text-white/68">
+                      Cette page assume le langage du luxe: moins de blocs,
+                      plus de verticalité, plus d’espace, plus de statut.
+                    </p>
+                  </div>
+
+                  <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                    {[
+                      ["1985", "naissance de la maison"],
+                      ["15+", "distinctions reçues"],
+                      ["48h", "pour commande sur mesure"],
+                    ].map(([value, label]) => (
+                      <div
+                        key={label}
+                        className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5"
+                      >
+                        <p className="text-2xl font-semibold text-[#d9b17d]">{value}</p>
+                        <p className="mt-1 text-sm text-white/58">{label}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Témoignages */}
-      <section className="bg-cream py-20">
+      <section id="collections" className="bg-[#f4ede5] py-20 text-[#241913]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={22}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-chocolate sm:text-5xl">
-              Ce que disent nos clients
+          <ScrollReveal distance={18} className="max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#9c7650]">
+              Collections
+            </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold sm:text-5xl lg:text-6xl">
+              Une lecture par univers de création, pas par simple liste de produits.
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                name: "Marie Dubois",
-                text: "Une pâtisserie d&apos;exception ! Chaque création est un véritable chef-d&apos;œuvre. Le Saint-Honoré était absolument divin pour notre mariage.",
-                rating: 5,
-                event: "Mariage",
-              },
-              {
-                name: "Jean-Luc Martin",
-                text: "Un savoir-faire remarquable. Les éclairs au chocolat sont les meilleurs de la région. L&apos;accueil est toujours chaleureux.",
-                rating: 5,
-                event: "Client régulier",
-              },
-              {
-                name: "Sophie Leroy",
-                text: "Commande pour l&apos;anniversaire de ma fille. Le gâteau était magnifique et délicieux. Toute la famille a été conquise !",
-                rating: 5,
-                event: "Anniversaire",
-              },
-            ].map((testimonial, index) => (
+
+          <div className="mt-14 space-y-10">
+            {collections.map((collection, index) => (
               <ScrollReveal
-                key={index}
-                delay={index * 70}
-                distance={20}
-                className="rounded-lg bg-white p-8 shadow-lg"
+                key={collection.title}
+                delay={index * 90}
+                distance={18}
+                className={`grid gap-6 rounded-[38px] border border-[#e3d6c6] bg-white p-5 shadow-[0_18px_50px_rgba(42,26,16,0.06)] lg:grid-cols-[0.95fr_1.05fr] lg:p-7 ${
+                  index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
               >
-                <div className="mb-4 flex items-center">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-current text-gold" />
-                  ))}
-                </div>
-                <p className="mb-6 text-muted-foreground italic">
-                  &quot;{testimonial.text}&quot;
-                </p>
-                <div>
-                  <div className="font-semibold text-chocolate">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-gold">{testimonial.event}</div>
+                <div
+                  className="min-h-[380px] rounded-[30px] bg-cover bg-center"
+                  style={{ backgroundImage: `url('${collection.image}')` }}
+                />
+                <div className="flex flex-col justify-center p-2 sm:p-6">
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#9c7650]">
+                    {collection.note}
+                  </p>
+                  <h3 className="mt-4 font-serif text-4xl font-semibold">
+                    {collection.title}
+                  </h3>
+                  <p className="mt-5 max-w-xl text-base leading-8 text-[#5f4b3d]">
+                    {collection.description}
+                  </p>
                 </div>
               </ScrollReveal>
             ))}
@@ -363,36 +226,121 @@ export default function Pattiserie() {
         </div>
       </section>
 
-      {/* Galerie */}
-      <section id="galerie" className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={22}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-chocolate sm:text-5xl">
-              Galerie gourmande
+      <section
+        id="signature"
+        className="border-y border-white/10 bg-[linear-gradient(180deg,#18110d_0%,#120d0a_100%)] py-20"
+      >
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <ScrollReveal distance={18}>
+            <p className="text-sm uppercase tracking-[0.24em] text-[#b89469]">
+              Signature
+            </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#f8f1ea] sm:text-5xl">
+              Les pièces emblématiques sont montrées comme des icônes de maison.
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Un aperçu visuel de nos créations les plus emblématiques
+            <p className="mt-6 max-w-md text-base leading-8 text-white/64">
+              Là où `fleuriste` raconte un portfolio éditorial et `boulangerie`
+              un commerce de proximité, `pattiserie` doit exprimer une autorité
+              plus statutaire, presque cérémonielle.
             </p>
           </ScrollReveal>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {[
-              "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1586985289906-406988974504?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=80",
-              "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=500&q=80",
-            ].map((image, index) => (
+
+          <div className="overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.03]">
+            {signaturePieces.map((piece, index) => (
               <ScrollReveal
-                key={index}
-                delay={(index % 4) * 55}
-                distance={16}
-                className="aspect-square overflow-hidden rounded-lg shadow-lg transition-shadow hover:shadow-xl"
+                key={piece.name}
+                delay={index * 70}
+                distance={18}
+                className="grid gap-4 border-b border-white/8 p-6 last:border-b-0 sm:grid-cols-[1fr_auto]"
+              >
+                <div>
+                  <h3 className="font-serif text-3xl font-semibold text-[#f6eee6]">
+                    {piece.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-white/60">{piece.detail}</p>
+                </div>
+                <div className="self-center text-xl font-semibold text-[#d9b17d]">
+                  {piece.price}
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f4ede5] py-20 text-[#241913]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal distance={18} className="max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#9c7650]">
+              Occasions
+            </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold sm:text-5xl">
+              Une pâtisserie pensée pour les moments qui demandent plus qu’un simple dessert.
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+            <ScrollReveal
+              distance={18}
+              className="rounded-[36px] border border-[#e3d6c6] bg-white p-8 shadow-[0_18px_50px_rgba(42,26,16,0.06)]"
+            >
+              <p className="text-sm uppercase tracking-[0.24em] text-[#9c7650]">
+                Maison
+              </p>
+              <p className="mt-5 font-serif text-4xl font-semibold">
+                Nous travaillons la table, le rythme du repas et la place de la pièce.
+              </p>
+              <p className="mt-6 text-base leading-8 text-[#5f4b3d]">
+                Le site n’est pas structuré comme un menu de boutique. Il met
+                d’abord en avant la portée symbolique de la création et le service
+                qui l’accompagne.
+              </p>
+            </ScrollReveal>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {occasions.map((occasion, index) => (
+                <ScrollReveal
+                  key={occasion}
+                  delay={index * 70}
+                  distance={18}
+                  className="rounded-[30px] bg-[#1b140f] p-7 text-white shadow-[0_20px_50px_rgba(0,0,0,0.16)]"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d9b17d] text-[#1a120d]">
+                    0{index + 1}
+                  </div>
+                  <p className="mt-6 text-lg leading-8 text-white/84">{occasion}</p>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#120d0a] py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal distance={18} className="mx-auto max-w-3xl text-center">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#b89469]">
+              Galerie
+            </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#f8f1ea] sm:text-5xl">
+              Une galerie plus précieuse que démonstrative.
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {gallery.map((image, index) => (
+              <ScrollReveal
+                key={image}
+                delay={(index % 2) * 70}
+                distance={18}
+                className={`overflow-hidden rounded-[30px] border border-white/10 ${
+                  index === 0 ? "md:col-span-2" : ""
+                }`}
               >
                 <div
-                  className="h-full w-full bg-cover bg-center transition-transform duration-300 hover:scale-105"
+                  className={`bg-cover bg-center transition-transform duration-500 hover:scale-[1.03] ${
+                    index === 0 ? "h-[420px]" : "h-[300px]"
+                  }`}
                   style={{ backgroundImage: `url('${image}')` }}
                 />
               </ScrollReveal>
@@ -401,195 +349,148 @@ export default function Pattiserie() {
         </div>
       </section>
 
-      {/* Services & Événements */}
-      <section className="bg-gold py-20">
+      <section className="border-y border-white/10 bg-[#1a120d] py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-16 text-center" distance={22}>
-            <h2 className="mb-6 font-serif text-4xl font-bold text-gold-foreground sm:text-5xl">
-              Services sur mesure
-            </h2>
-            <p className="text-xl text-gold-foreground/80">
-              Nous créons des moments d&apos;exception pour tous vos événements
+          <ScrollReveal distance={18} className="max-w-3xl">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#b89469]">
+              Témoignages
             </p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold text-[#f8f1ea] sm:text-5xl">
+              Une preuve sociale traitée comme validation de maison.
+            </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                icon: Heart,
-                title: "Mariages",
-                description:
-                  "Pièces montées, wedding cakes et buffets sucrés pour votre jour J",
-              },
-              {
-                icon: Gift,
-                title: "Anniversaires",
-                description:
-                  "Gâteaux personnalisés et créations thématiques pour tous les âges",
-              },
-              {
-                icon: Calendar,
-                title: "Événements d&apos;entreprise",
-                description:
-                  "Cocktails sucrés, pause-café gourmande et réceptions professionnelles",
-              },
-            ].map((service, index) => (
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {testimonials.map((item, index) => (
               <ScrollReveal
-                key={index}
-                delay={index * 70}
-                distance={20}
-                className="rounded-lg bg-white/10 p-8 text-center backdrop-blur-sm"
+                key={item.name}
+                delay={index * 80}
+                distance={18}
+                className="rounded-[32px] border border-white/8 bg-white/[0.03] p-8"
               >
-                <service.icon className="mx-auto mb-6 h-16 w-16 text-gold-foreground" />
-                <h3 className="mb-4 font-serif text-2xl font-semibold text-gold-foreground">
-                  {service.title}
-                </h3>
-                <p className="text-gold-foreground/80">{service.description}</p>
+                <div className="flex gap-1 text-[#d9b17d]">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <Star key={starIndex} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <p className="mt-6 text-xl leading-9 text-white/82">
+                  &quot;{item.text}&quot;
+                </p>
+                <div className="mt-6">
+                  <p className="font-semibold text-[#f8f1ea]">{item.name}</p>
+                  <p className="text-sm text-white/56">{item.role}</p>
+                </div>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact & Informations pratiques */}
-      <section id="contact" className="bg-chocolate py-20 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <ScrollReveal distance={24}>
-              <h2 className="mb-8 font-serif text-4xl font-bold sm:text-5xl">
-                Venez nous rendre visite
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <MapPin className="mt-1 h-6 w-6 text-gold" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">Adresse</h3>
-                    <p className="text-white/80">
-                      123 Rue de la Gourmandise
-                      <br />
-                      75001 Paris, France
-                    </p>
+      <section id="contact" className="bg-[#f4ede5] py-20 text-[#241913]">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal
+            distance={18}
+            className="rounded-[40px] border border-[#e3d6c6] bg-white p-8 shadow-[0_22px_60px_rgba(42,26,16,0.08)] sm:p-10"
+          >
+            <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr]">
+              <div>
+                <p className="text-sm uppercase tracking-[0.24em] text-[#9c7650]">
+                  Conciergerie
+                </p>
+                <h2 className="mt-3 font-serif text-4xl font-semibold sm:text-5xl">
+                  Commander une création pour une date, un lieu, une table.
+                </h2>
+                <div className="mt-8 space-y-5 text-sm leading-7 text-[#5f4b3d]">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="mt-1 h-4 w-4 text-[#9c7650]" />
+                    <span>123 Rue de la Gourmandise, 75001 Paris</span>
                   </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Clock className="mt-1 h-6 w-6 text-gold" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">
-                      Horaires d&apos;ouverture
-                    </h3>
-                    <div className="space-y-1 text-white/80">
-                      <p>Mardi - Samedi : 7h00 - 19h30</p>
-                      <p>Dimanche : 8h00 - 13h00</p>
-                      <p className="text-gold">Fermé le lundi</p>
-                    </div>
+                  <div className="flex items-start gap-3">
+                    <Clock className="mt-1 h-4 w-4 text-[#9c7650]" />
+                    <span>Mardi - Samedi 7h00 - 19h30, Dimanche 8h00 - 13h00</span>
                   </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Phone className="mt-1 h-6 w-6 text-gold" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">Téléphone</h3>
-                    <p className="text-white/80">01 42 33 44 55</p>
+                  <div className="flex items-start gap-3">
+                    <Phone className="mt-1 h-4 w-4 text-[#9c7650]" />
+                    <span>01 42 33 44 55</span>
                   </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <Mail className="mt-1 h-6 w-6 text-gold" />
-                  <div>
-                    <h3 className="mb-1 font-semibold">Email</h3>
-                    <p className="text-white/80">
-                      contact@patisserie-douceur.fr
-                    </p>
+                  <div className="flex items-start gap-3">
+                    <Mail className="mt-1 h-4 w-4 text-[#9c7650]" />
+                    <span>contact@patisserie-douceur.fr</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Calendar className="mt-1 h-4 w-4 text-[#9c7650]" />
+                    <span>Commandes spéciales à partir de 48h</span>
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={90} distance={24}>
-              <h3 className="mb-6 font-serif text-2xl font-semibold">
-                Commandez en ligne
-              </h3>
-              <p className="mb-8 text-white/80">
-                Passez votre commande dès maintenant pour une préparation
-                soignée. Nous recommandons de commander 48h à l&apos;avance pour
-                les gâteaux sur mesure.
-              </p>
-              <div className="space-y-4">
-                <Button
-                  size="lg"
-                  className="w-full bg-gold text-gold-foreground hover:bg-gold/90"
+
+              <div className="rounded-[32px] bg-[#18110d] p-8 text-white">
+                <p className="text-sm uppercase tracking-[0.24em] text-[#d9b17d]">
+                  Ce que vend cette structure
+                </p>
+                <p className="mt-5 text-base leading-8 text-white/76">
+                  Une maison premium qui assume la distinction, la précision et
+                  la valeur perçue. Ce n’est ni un site commerce rapide comme
+                  `boulangerie`, ni un portfolio studio comme `fleuriste`.
+                </p>
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Button className="bg-[#d9b17d] text-[#1a120d] hover:bg-[#e4bf8f]">
+                    Demander une création
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="border-white/30 bg-transparent text-white hover:bg-white/10"
+                  >
+                    Prendre rendez-vous
+                  </Button>
+                </div>
+                <Link
+                  href="#collections"
+                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#d9b17d]"
                 >
-                  Commander en ligne
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="w-full border-white text-white hover:bg-white hover:text-chocolate"
-                >
-                  Demander un devis
-                </Button>
+                  Revoir les collections
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-              <p className="mt-6 text-sm text-white/60">
-                * Livraison possible dans un rayon de 20km
-              </p>
-            </ScrollReveal>
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t bg-white py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <ScrollReveal distance={16}>
-              <div className="mb-4 flex items-center">
-                <ChefHat className="mr-2 h-8 w-8 text-chocolate" />
-                <span className="font-serif text-2xl font-bold text-chocolate">
-                  Pâtisserie Douceur
-                </span>
-              </div>
-              <p className="text-muted-foreground">
-                L&apos;art de la pâtisserie française depuis 1985. Créations
-                artisanales d&apos;exception.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={60} distance={16}>
-              <h4 className="mb-4 font-semibold text-chocolate">
-                Liens rapides
-              </h4>
-              <div className="space-y-2">
-                <a
-                  href="#specialites"
-                  className="block text-muted-foreground hover:text-chocolate"
-                >
-                  Nos spécialités
-                </a>
-                <a
-                  href="#apropos"
-                  className="block text-muted-foreground hover:text-chocolate"
-                >
-                  À propos
-                </a>
-                <a
-                  href="#galerie"
-                  className="block text-muted-foreground hover:text-chocolate"
-                >
-                  Galerie
-                </a>
-                <a
-                  href="#contact"
-                  className="block text-muted-foreground hover:text-chocolate"
-                >
-                  Contact
-                </a>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={120} distance={16}>
-              <h4 className="mb-4 font-semibold text-chocolate">Suivez-nous</h4>
-              <p className="mb-4 text-muted-foreground">
-                Restez informés de nos nouvelles créations et événements
-                spéciaux.
-              </p>
-              <div className="text-sm text-muted-foreground">
-                © 2024 Pâtisserie Douceur. Tous droits réservés.
-              </div>
-            </ScrollReveal>
+      <footer className="border-t border-white/10 bg-[#120d0a] py-12">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
+          <div>
+            <div className="flex items-center gap-3">
+              <ChefHat className="h-5 w-5 text-[#d9b17d]" />
+              <span className="font-serif text-2xl font-semibold text-[#f8f1ea]">
+                Pâtisserie Douceur
+              </span>
+            </div>
+            <p className="mt-4 text-sm leading-7 text-white/56">
+              Maison de création pâtissière pour tables d’exception, gifting
+              premium et commandes sur mesure.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-[#f8f1ea]">Navigation</p>
+            <div className="mt-4 space-y-2 text-sm text-white/56">
+              <a href="#collections" className="block hover:text-[#d9b17d]">
+                Collections
+              </a>
+              <a href="#signature" className="block hover:text-[#d9b17d]">
+                Signature
+              </a>
+              <a href="#contact" className="block hover:text-[#d9b17d]">
+                Conciergerie
+              </a>
+            </div>
+          </div>
+          <div>
+            <p className="font-semibold text-[#f8f1ea]">Positionnement</p>
+            <p className="mt-4 text-sm leading-7 text-white/56">
+              Une architecture plus statutaire, plus sombre et plus cérémonielle
+              que les deux autres templates.
+            </p>
           </div>
         </div>
       </footer>
