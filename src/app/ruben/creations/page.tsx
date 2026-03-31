@@ -243,7 +243,7 @@ export default function Creations() {
               className="border-gold-foreground px-8 py-3 text-gold-foreground hover:bg-gold-foreground hover:text-gold"
               asChild
             >
-              <a href="/contact">Demander un devis</a>
+              <a href="/ruben/contact">Demander un devis</a>
             </Button>
           </div>
         </div>

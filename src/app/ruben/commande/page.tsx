@@ -317,7 +317,7 @@ export default function Commande() {
               className="bg-gold px-8 py-3 text-gold-foreground hover:bg-gold/90"
               asChild
             >
-              <a href="/contact">Nous contacter</a>
+              <a href="/ruben/contact">Nous contacter</a>
             </Button>
             <Button
               variant="outline"
