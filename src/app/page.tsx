@@ -5,6 +5,7 @@ const templates = [
   { href: "/boulangerie", label: "Boulangerie" },
   { href: "/fleuriste", label: "Fleuriste" },
   { href: "/ordinateur", label: "Ordinateur" },
+  { href: "/osteopathe-kor-pantin", label: "Ostéopathe KOR Pantin" },
   { href: "/pattiserie", label: "Pattiserie" },
   { href: "/ruben", label: "Ruben" },
   { href: "/nathreparation", label: "Nath Reparation" },
