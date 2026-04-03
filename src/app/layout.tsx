@@ -15,8 +15,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "WebFacto - Showcase Portfolio",
-  authors: [{ name: "WebFacto" }],
+  title: "SiteKept Templates",
+  description:
+    "Catalogue interne des templates SiteKept avec aperçu des secteurs, structures et variations disponibles.",
+  authors: [{ name: "SiteKept" }],
 };
 
 export const viewport: Viewport = {
