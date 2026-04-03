@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "clean": "rm -rf .next",
     "build": "next build",
     "start": "next start",
+    "preview:clean": "pnpm run clean && pnpm run build && next start --hostname ${PREVIEW_HOST:-127.0.0.1} --port ${PORT:-3000}",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write .",

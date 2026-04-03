@@ -55,8 +55,10 @@ Open [http://localhost:3000](http://localhost:3000) to view your application.
 ## 📝 Available Scripts
 
 - `pnpm run dev` - Start development server with Turbopack
+- `pnpm run clean` - Remove the current `.next` build output
 - `pnpm run build` - Build the application for production
 - `pnpm run start` - Start production server
+- `pnpm run preview:clean` - Rebuild from scratch and start a clean production preview on `127.0.0.1:3000`
 - `pnpm run lint` - Run ESLint
 - `pnpm run lint:fix` - Run ESLint with auto-fix
 - `pnpm run format` - Format code with Prettier
@@ -141,6 +143,36 @@ Deploy to Vercel with zero configuration.
 ### Other Platforms
 
 The built application in `.next` folder can be deployed to any Node.js hosting platform.
+
+## Local Preview Workflow
+
+When a local preview looks unstyled or some routes load without CSS, the usual cause is an old `next start` process serving HTML from a different build than the current `.next/static` assets.
+
+Use a single clean production preview process:
+
+```bash
+pnpm run preview:clean
+```
+
+Or choose a specific port:
+
+```bash
+PORT=3005 pnpm run preview:clean
+```
+
+Or choose a specific host explicitly:
+
+```bash
+PREVIEW_HOST=127.0.0.1 PORT=3005 pnpm run preview:clean
+```
+
+Recommended workflow:
+
+1. Stop older preview servers if multiple `next start` processes are running.
+2. Rebuild from scratch with `pnpm run preview:clean`.
+3. Share only the URL from that fresh process as the source of truth.
+
+Note: the script intentionally uses `PREVIEW_HOST`, not `HOSTNAME`, because many machines already define `HOSTNAME` and that can make Next bind to a different network name than the one you expect locally.
 
 ## 🤝 Contributing
 
