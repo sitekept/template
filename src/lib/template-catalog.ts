@@ -160,6 +160,24 @@ export const templateCatalog: TemplateCatalogEntry[] = [
       "Landing sobre et autoritaire pour convertir sur une consultation initiale avec preuve d'expertise.",
   },
   {
+    slug: "avocate-tel-aviv",
+    href: "/avocate-tel-aviv",
+    name: "Rebecca Zarroug Avocate",
+    sector: "Juridique",
+    structure: "Multi-page service",
+    archetype: "Cabinet chic transfrontalier",
+    navModel: "Header sticky sobre + contact",
+    motionProfile: "Transitions minimales",
+    shapeLanguage: "Rayons 4-8px, bordures fines",
+    pageModel: "Accueil, expertises, blog, contact",
+    primaryCta: "Prendre contact",
+    previewImage:
+      "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80",
+    status: "Nouveau",
+    description:
+      "Site alpha chic pour une avocate à Tel Aviv spécialisée en immobilier et successions France-Israël.",
+  },
+  {
     slug: "agence-immobiliere",
     href: "/agence-immobiliere",
     name: "Agence immobilière",
