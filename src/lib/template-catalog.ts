@@ -141,23 +141,6 @@ export const templateCatalog: TemplateCatalogEntry[] = [
       "Univers d'hospitalité axé ambiance, carte, réservation et récit de lieu plutôt que simple menu.",
   },
   {
-    slug: "balinjera",
-    href: "/balinjera",
-    name: "Balinjera",
-    sector: "Restauration",
-    structure: "Hospitality éditoriale",
-    archetype: "Clone Elementor RTL",
-    navModel: "Navigation RTL superposée + actions fixes",
-    motionProfile: "Parallax léger et sections image/texte",
-    shapeLanguage: "Panneaux francs, gradients bas de carte",
-    pageModel: "Accueil one-page restaurateur avec footer contact",
-    primaryCta: "Commander / réserver",
-    previewImage: "/balinjera/hero.jpg",
-    status: "En ligne",
-    description:
-      "Template restaurant Balinjera avec accueil immersif, pages éditoriales, version hébreu/anglais et accès direct commande/contact.",
-  },
-  {
     slug: "cabinet-avocat",
     href: "/cabinet-avocat",
     name: "Cabinet d'avocat",
