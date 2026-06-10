@@ -2,6 +2,14 @@ export type BalinjeraLang = "he" | "en";
 
 export type BalinjeraPageKey = "home" | "about" | "events" | "blog";
 
+export type BalinjeraBlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  body: readonly string[];
+};
+
 export const languageLabels: Record<
   BalinjeraLang,
   { current: string; switchTo: string; switchLabel: string; dir: "rtl" | "ltr" }
@@ -143,28 +151,70 @@ export const balinjeraCopy = {
       ctaTitle: "רוצים לתכנן אירוע?",
       ctaBody:
         "שלחו לנו פרטים ונבנה יחד ארוחה שמתאימה לקבוצה, לשעה ולסגנון האירוח.",
+      form: {
+        title: "ספרו לנו על האירוע",
+        body: "הטופס מוכן לעיצוב ולבדיקה מקומית. שליחה אמיתית דרך Resend תחובר רק אחרי שהפרויקט יעבור לריפו הסופי.",
+        submit: "שליחת פרטים",
+        success:
+          "הפרטים נשמרו בממשק המקומי. בשלב הזה לא נשלח אימייל, והחיבור ל-Resend יתווסף בריפו הסופי.",
+        consent: "אני מאשר/ת שיחזרו אליי לגבי האירוע.",
+        fields: {
+          name: {
+            label: "שם מלא",
+            placeholder: "איך לפנות אליכם",
+          },
+          email: {
+            label: "אימייל",
+            placeholder: "name@example.com",
+          },
+          phone: {
+            label: "טלפון",
+            placeholder: "050-000-0000",
+          },
+          date: {
+            label: "תאריך רצוי",
+            placeholder: "בחרו תאריך",
+          },
+          guests: {
+            label: "מספר משתתפים",
+            placeholder: "לדוגמה 18",
+          },
+          message: {
+            label: "מה חשוב שנדע?",
+            placeholder: "סוג האירוע, שעה מועדפת, העדפות אוכל וכל פרט שיעזור לנו לחזור אליכם.",
+          },
+        },
+      },
     },
     blogPage: {
       eyebrow: "בלוג באלינג׳רה",
       title: "סיפורים, טעמים ומסורת מהמטבח האתיופי",
       body: "הבלוג נותן מקום לסיפורים שמאחורי האוכל: אינג׳רה, טף, אכילה משותפת והטעמים שמחברים בין מסורת אתיופית לחיים בתל אביב.",
+      articleEyebrow: "מאמר מהבלוג",
+      backLabel: "חזרה לבלוג",
       posts: [
         {
+          slug: "injera-heart-of-meal",
           title: "מה הופך אינג׳רה ללב הארוחה?",
           excerpt:
             "אינג׳רה היא גם לחם, גם צלחת וגם הדרך שבה כולם חולקים את אותה ארוחה.",
           image: "/balinjera/injera-wide.jpg",
+          body: [
+            "אינג׳רה היא הרבה יותר מלחם שמונח ליד המנה. היא הבסיס של הארוחה האתיופית: עליה מניחים את התבשילים, איתה אוספים כל ביס, וסביבה נוצרת שיחה.",
+            "בבאלינג׳רה אנחנו מכינים אינג׳רה טרייה מקמח טף, ללא גלוטן, עם המרקם האוורירי והחמצמצות העדינה שמאזנת את התבלינים. זו הסיבה שכל שולחן מתחיל ממנה.",
+            "כשהאינג׳רה מגיעה למרכז השולחן, כולם אוכלים מאותו מגש בקצב טבעי. זה אוכל שמבקש להיות משותף, לא רק מוגש.",
+          ],
         },
         {
+          slug: "eat-together-balinjera",
           title: "איך אוכלים ביחד בבאלינג׳רה",
           excerpt: "השם באלינג׳רה מזכיר את הרעיון הפשוט והיפה של אכילה משותפת.",
           image: "/balinjera/food-table.jpg",
-        },
-        {
-          title: "מטבח אתיופי ליד שוק הכרמל",
-          excerpt:
-            "החיבור בין כרם התימנים, שוק הכרמל והמטבח האתיופי יוצר חוויה תל אביבית מיוחדת.",
-          image: "/balinjera/team.jpg",
+          body: [
+            "השם באלינג׳רה מחזיק בתוכו את הרעיון המרכזי של המקום: לאכול ביחד. בארוחה אתיופית מסורתית האוכל לא בנוי ממנות נפרדות לכל סועד, אלא משולחן שנפתח במרכז.",
+            "כל אחד קורע חתיכת אינג׳רה, אוסף איתה תבשיל, ירקות או קטניות, וממשיך את השיחה סביב אותו מגש. יש בזה קצב אחר, קרוב יותר, שמזכיר אוכל ביתי ומשפחתי.",
+            "גם בלב תל אביב, ליד שוק הכרמל וכרם התימנים, אנחנו רוצים לשמור על התחושה הזו: אוכל צבעוני, ידיים סביב השולחן, וטעמים שמחברים אנשים.",
+          ],
         },
       ],
     },
@@ -277,31 +327,85 @@ export const balinjeraCopy = {
       ctaTitle: "Planning an event?",
       ctaBody:
         "Send us the details and we will shape a meal that fits the group, timing and hosting style.",
+      form: {
+        title: "Tell us about the event",
+        body: "The form is ready for local design and testing. Real Resend delivery will be connected only after the project is extracted into its final repository.",
+        submit: "Send details",
+        success:
+          "The details were captured in the local interface. No email is sent at this stage; Resend will be connected in the final repository.",
+        consent: "I agree to be contacted about this event request.",
+        fields: {
+          name: {
+            label: "Full name",
+            placeholder: "How should we address you?",
+          },
+          email: {
+            label: "Email",
+            placeholder: "name@example.com",
+          },
+          phone: {
+            label: "Phone",
+            placeholder: "050-000-0000",
+          },
+          date: {
+            label: "Preferred date",
+            placeholder: "Choose a date",
+          },
+          guests: {
+            label: "Group size",
+            placeholder: "For example 18",
+          },
+          message: {
+            label: "What should we know?",
+            placeholder:
+              "Event type, preferred time, food preferences and anything that will help us respond.",
+          },
+        },
+      },
     },
     blogPage: {
       eyebrow: "Balinjera Blog",
       title: "Stories, flavors and tradition from the Ethiopian kitchen",
       body: "The blog makes room for the stories behind the food: injera, teff, shared eating and the flavors that connect Ethiopian tradition with life in Tel Aviv.",
+      articleEyebrow: "From the blog",
+      backLabel: "Back to the blog",
       posts: [
         {
+          slug: "injera-heart-of-meal",
           title: "Why injera is the heart of the meal",
           excerpt:
             "Injera is bread, plate and the way everyone shares the same meal.",
           image: "/balinjera/injera-wide.jpg",
+          body: [
+            "Injera is much more than bread served next to the dish. It is the base of the Ethiopian meal: stews are placed on it, every bite is gathered with it, and conversation forms around it.",
+            "At Balinjera we prepare fresh injera from teff flour, naturally gluten free, with the airy texture and gentle tang that balance the spices. That is why every table starts with it.",
+            "When injera arrives at the center of the table, everyone eats from the same platter at a natural pace. It is food designed to be shared, not only served.",
+          ],
         },
         {
+          slug: "eat-together-balinjera",
           title: "How people eat together at Balinjera",
           excerpt:
             "The name Balinjera carries the simple and beautiful idea of a shared meal.",
           image: "/balinjera/food-table.jpg",
-        },
-        {
-          title: "Ethiopian food near Carmel Market",
-          excerpt:
-            "The connection between Kerem HaTeimanim, Carmel Market and Ethiopian cuisine creates a distinct Tel Aviv experience.",
-          image: "/balinjera/team.jpg",
+          body: [
+            "The name Balinjera carries the core idea of the place: eating together. In a traditional Ethiopian meal, the food is not built as separate plates for each guest, but as a table opened in the center.",
+            "Each person tears a piece of injera, gathers stew, vegetables or legumes, and keeps the conversation moving around the same platter. It creates a slower, closer rhythm that feels like family food.",
+            "Even in the heart of Tel Aviv, near Carmel Market and Kerem HaTeimanim, we want to keep that feeling: colorful food, hands around the table and flavors that bring people closer.",
+          ],
         },
       ],
     },
   },
 } as const;
+
+export function getBlogPostSlugs(): string[] {
+  return balinjeraCopy.he.blogPage.posts.map((post) => post.slug);
+}
+
+export function getBlogPost(
+  lang: BalinjeraLang,
+  slug: string
+): BalinjeraBlogPost | undefined {
+  return balinjeraCopy[lang].blogPage.posts.find((post) => post.slug === slug);
+}
