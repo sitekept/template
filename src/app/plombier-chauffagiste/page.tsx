@@ -6,6 +6,7 @@ import {
   Wrench,
 } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Atelier Thermique - Plombier Chauffagiste",
@@ -314,12 +315,12 @@ export default function PlombierChauffagistePage() {
             >
               01 76 83 00 14
             </a>
-            <a
+            <Link
               href="/"
               className="inline-flex items-center justify-center rounded-[10px] border border-[#cda690] bg-white px-6 py-3 text-sm font-semibold text-[#201815]"
             >
               Retour au catalogue
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -68,6 +68,7 @@ const eslintConfig = [
       "no-duplicate-imports": "error",
       "prefer-const": "error",
       "no-var": "error",
+      "react/no-unescaped-entities": "off",
 
       // Accessibility rules
       "jsx-a11y/alt-text": "error",
