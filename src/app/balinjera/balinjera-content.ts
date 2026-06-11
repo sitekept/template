@@ -10,6 +10,9 @@ export type BalinjeraBlogPost = {
   body: readonly string[];
 };
 
+export const BALINJERA_ORDER_HREF =
+  "https://wolt.com/he/isr/tel-aviv/restaurant/balinjera";
+
 export const languageLabels: Record<
   BalinjeraLang,
   { current: string; switchTo: string; switchLabel: string; dir: "rtl" | "ltr" }
@@ -81,7 +84,7 @@ export const balinjeraCopy = {
       { key: "menu", label: "תפריט", href: "/balinjera#menu" },
       { key: "events", label: "אירועים", href: "/balinjera/events" },
       { key: "blog", label: "בלוג", href: "/balinjera/blog" },
-      { key: "contact", label: "יצירת קשר", href: "/balinjera#footer" },
+      { key: "order", label: "הזמינו", href: BALINJERA_ORDER_HREF },
     ],
     hero: {
       eyebrow: "ביסטרו אתיופי כשר בכרם התימנים",
@@ -91,10 +94,6 @@ export const balinjeraCopy = {
     intro: {
       title: "מסעדה אתיופית כשרה בכרם התימנים",
       body: "קשה להסביר במילים את מה שאנחנו מציעים בבאלינג׳רה, אבל אם כבר הבנתם מהשם של המקום, אז כן, אנחנו מכינים אוכל אתיופי מסורתי, בריא, טעים ובעיקר עם מלא מלא צבע! זה בסדר לא נעלבנו אם תגידו לנו שזו הפעם הראשונה שאתם מגיעים אלינו, רק לפני כמה שנים החלטנו להרים את הכפפה או יותר נכון את הסירים ולחשוף לכולם את הטעמים והריחות של מסורת אתיופית/יהודית ארוכת שנים. ואם כבר אתיופי אז אין כמו אינג׳רה טרייה שאנחנו מכינים יום יום (ללא גלוטן). אתם מוזמנים להגיע לטעום ולחוות חוויה יוצאת דופן שכמוה עוד לא חוויתם, אחר כך כבר תחזרו לבד.",
-    },
-    offer: {
-      title: "מה תכלו לקבל אצלנו",
-      body: "באלינג׳ירה הוא ביסטרו קליל וצעיר בפאתי שוק הכרמל המשמש כאכסניה חמה למטבח האתיופי. זהו פרויקט של הדוגמנית פנטה פראדה. הארוחה האתיופית הקלאסית, המתבססת על פיתת אינג׳ירה אוורירית מקמח טף (ללא גלוטן), מוגשת פה עם מבחר תבשילים בשריים או טבעוניים.",
     },
     featureCards: [
       {
@@ -257,7 +256,7 @@ export const balinjeraCopy = {
       { key: "menu", label: "Menu", href: "/balinjera#menu" },
       { key: "events", label: "Events", href: "/balinjera/events" },
       { key: "blog", label: "Blog", href: "/balinjera/blog" },
-      { key: "contact", label: "Contact", href: "/balinjera#footer" },
+      { key: "order", label: "Order", href: BALINJERA_ORDER_HREF },
     ],
     hero: {
       eyebrow: "Kosher Ethiopian bistro in Kerem HaTeimanim",
@@ -267,10 +266,6 @@ export const balinjeraCopy = {
     intro: {
       title: "A kosher Ethiopian restaurant in Kerem HaTeimanim",
       body: "It is hard to explain in words what we offer at Balinjera, but the name already gives a clue: we prepare traditional Ethiopian food that is healthy, tasty and full of color. A few years ago we decided to lift the pots and share the tastes and aromas of a long Ethiopian-Jewish tradition. And if it is Ethiopian, nothing beats fresh injera that we make every day from teff flour, naturally gluten free.",
-    },
-    offer: {
-      title: "What you can get here",
-      body: "Balinjera is a light, young bistro on the edge of Carmel Market and a warm home for Ethiopian cuisine. It is a project by model Fanta Prada. The classic Ethiopian meal, based on airy injera made from teff flour, is served here with a selection of meat or vegan stews.",
     },
     featureCards: [
       {

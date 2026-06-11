@@ -19,6 +19,7 @@ import type { ReactNode } from "react";
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 
 import {
+  BALINJERA_ORDER_HREF,
   balinjeraCopy,
   hrefWithLang,
   languageLabels,
@@ -107,12 +108,7 @@ function SiteHeader({
     copy.nav.map((item) => {
       const isActive = item.key === active;
       const className = isActive ? styles["navActive"] : undefined;
-      const href =
-        item.key === "contact"
-          ? active === "events"
-            ? EVENTS_CONTACT_HREF
-            : WHATSAPP_HREF
-          : item.href;
+      const href = item.href;
 
       if (href.startsWith("http")) {
         return (
@@ -270,7 +266,7 @@ function FloatingActions({ lang }: { lang: BalinjeraLang }) {
       <div className={styles["quickActions"]} aria-label={copy.actions}>
         <a
           className={`${styles["quickAction"]} ${styles["woltAction"]}`}
-          href="https://wolt.com/he/isr/tel-aviv/restaurant/balinjera"
+          href={BALINJERA_ORDER_HREF}
           target="_blank"
           rel="noreferrer"
           aria-label={copy.wolt}
@@ -406,20 +402,6 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
           </div>
         </div>
 
-        <div className={`${styles["splitCopy"]} ${styles["offerCopy"]}`}>
-          <div className={styles["copyBlock"]} data-balinjera-animate="fade-up">
-            <h2>{copy.offer.title}</h2>
-            <p>{copy.offer.body}</p>
-            <SiteButton href="/balinjera/about" lang={lang}>
-              {copy.moreInfo}
-            </SiteButton>
-          </div>
-          <div
-            className={styles["offerImage"]}
-            data-balinjera-animate="image"
-            aria-hidden="true"
-          />
-        </div>
       </section>
 
       <section className={styles["nameSection"]}>
@@ -440,7 +422,7 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
             <h2>{copy.name.title}</h2>
             <p>{copy.name.body}</p>
             <SiteButton
-              href="https://wolt.com/he/isr/tel-aviv/restaurant/balinjera"
+              href={BALINJERA_ORDER_HREF}
               lang={lang}
             >
               {copy.orderWolt}
@@ -465,10 +447,12 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
 }
 
 export function ReserveSection({
-  contactHref = WHATSAPP_HREF,
+  actionHref = BALINJERA_ORDER_HREF,
+  actionLabel,
   lang,
 }: {
-  contactHref?: string;
+  actionHref?: string;
+  actionLabel?: ReactNode;
   lang: BalinjeraLang;
 }) {
   const copy = balinjeraCopy[lang];
@@ -481,8 +465,8 @@ export function ReserveSection({
             <h2 key={line}>{line}</h2>
           ))}
         </div>
-        <SiteButton href={contactHref} lang={lang} brown>
-          {copy.contactLabel}
+        <SiteButton href={actionHref} lang={lang} brown>
+          {actionLabel ?? copy.orderLabel}
         </SiteButton>
       </div>
       <div className={styles["teamImage"]} data-balinjera-animate="image" />
@@ -491,16 +475,18 @@ export function ReserveSection({
 }
 
 function PageHero({
+  actionHref = BALINJERA_ORDER_HREF,
+  actionLabel,
   body,
-  contactHref = WHATSAPP_HREF,
   eyebrow,
   imageClass,
   lang,
   sectionClass,
   title,
 }: {
+  actionHref?: string;
+  actionLabel?: ReactNode;
   body: string;
-  contactHref?: string;
   eyebrow: string;
   imageClass: string | undefined;
   lang: BalinjeraLang;
@@ -517,8 +503,8 @@ function PageHero({
         <p className={styles["eyebrow"]}>{eyebrow}</p>
         <h1>{title}</h1>
         <p>{body}</p>
-        <SiteButton href={contactHref} lang={lang}>
-          {balinjeraCopy[lang].contactLabel}
+        <SiteButton href={actionHref} lang={lang}>
+          {actionLabel ?? balinjeraCopy[lang].orderLabel}
         </SiteButton>
       </div>
     </section>
@@ -572,8 +558,9 @@ export function EventsPageContent({ lang }: { lang: BalinjeraLang }) {
   return (
     <>
       <PageHero
+        actionHref={EVENTS_CONTACT_HREF}
+        actionLabel={copy.contactLabel}
         body={page.body}
-        contactHref={EVENTS_CONTACT_HREF}
         eyebrow={page.eyebrow}
         imageClass={styles["eventHeroImage"]}
         lang={lang}
@@ -618,7 +605,7 @@ export function EventsPageContent({ lang }: { lang: BalinjeraLang }) {
         </div>
       </section>
 
-      <ReserveSection contactHref={EVENTS_CONTACT_HREF} lang={lang} />
+      <ReserveSection lang={lang} />
     </>
   );
 }

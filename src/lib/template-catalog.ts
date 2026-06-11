@@ -1,4 +1,9 @@
 export type TemplateStatus = "En ligne" | "Nouveau" | "Lab";
+export type TemplateAdminStatus =
+  | "sitekept-public"
+  | "admin-only"
+  | "lab"
+  | "archived";
 
 export type TemplateStructure =
   | "Commerce gourmand"
@@ -12,6 +17,8 @@ export type TemplateStructure =
 export type TemplateCatalogEntry = {
   slug: string;
   href: string;
+  vercelUrl: string;
+  sitekeptUrl?: string;
   name: string;
   sector: string;
   structure: TemplateStructure;
@@ -23,11 +30,73 @@ export type TemplateCatalogEntry = {
   primaryCta: string;
   previewImage: string;
   status: TemplateStatus;
+  adminStatus: TemplateAdminStatus;
+  adminNote?: string;
   description: string;
   hardReload?: boolean;
 };
 
-export const templateCatalog: TemplateCatalogEntry[] = [
+type TemplateCatalogSourceEntry = Omit<
+  TemplateCatalogEntry,
+  "vercelUrl" | "sitekeptUrl" | "adminStatus"
+> & {
+  adminStatus?: TemplateAdminStatus;
+};
+
+export const TEMPLATE_VERCEL_BASE_URL = "https://sitekept-templates.vercel.app";
+export const SITEKEPT_BASE_URL = "https://www.sitekept.com";
+
+const SITEKEPT_PUBLIC_TEMPLATE_SLUGS = new Set([
+  "boulangerie",
+  "fleuriste",
+  "ordinateur",
+  "pattiserie",
+  "dentiste",
+  "plombier-chauffagiste",
+  "salon-coiffure",
+  "menage-nettoyage",
+  "restaurant-bistrot",
+  "architecte-interieur",
+  "cabinet-avocat",
+  "avocate-tel-aviv",
+  "agence-immobiliere",
+]);
+
+const LAB_TEMPLATE_SLUGS = new Set([
+  "annecyelec",
+  "osteopathe-kor-pantin",
+  "ruben",
+  "nathreparation",
+]);
+
+function getAdminStatus(slug: string): TemplateAdminStatus {
+  if (SITEKEPT_PUBLIC_TEMPLATE_SLUGS.has(slug)) {
+    return "sitekept-public";
+  }
+
+  if (LAB_TEMPLATE_SLUGS.has(slug)) {
+    return "lab";
+  }
+
+  return "admin-only";
+}
+
+function withDeploymentLinks(
+  template: TemplateCatalogSourceEntry
+): TemplateCatalogEntry {
+  const adminStatus = template.adminStatus ?? getAdminStatus(template.slug);
+
+  return {
+    ...template,
+    adminStatus,
+    vercelUrl: `${TEMPLATE_VERCEL_BASE_URL}/${template.slug}`,
+    ...(adminStatus === "sitekept-public"
+      ? { sitekeptUrl: `${SITEKEPT_BASE_URL}/${template.slug}` }
+      : {}),
+  };
+}
+
+const templateCatalogSource = [
   {
     slug: "dentiste",
     href: "/dentiste",
@@ -141,6 +210,23 @@ export const templateCatalog: TemplateCatalogEntry[] = [
       "Univers d'hospitalité axé ambiance, carte, réservation et récit de lieu plutôt que simple menu.",
   },
   {
+    slug: "double-espresso",
+    href: "/double-espresso",
+    name: "Double Espresso",
+    sector: "Coffee shop",
+    structure: "Commerce gourmand",
+    archetype: "Mini-site cafe multi-page",
+    navModel: "Navbar multi-page + CTA appel/directions",
+    motionProfile: "Hero 21st.dev scroll expansion + transitions courtes",
+    shapeLanguage: "Angles 4px, contraste marron foncé/tomate/teal",
+    pageModel: "Accueil, menu, about us, our addresses",
+    primaryCta: "Ouvrir la page",
+    previewImage: "/double-espresso/gallery/google-01.jpg",
+    status: "Nouveau",
+    description:
+      "Page de vente ciblée pour un café de Jaffa sans site web, pensée pour convertir une recherche Google Maps en appel ou itinéraire.",
+  },
+  {
     slug: "cabinet-avocat",
     href: "/cabinet-avocat",
     name: "Cabinet d'avocat",
@@ -213,6 +299,25 @@ export const templateCatalog: TemplateCatalogEntry[] = [
     status: "Lab",
     description:
       "Template service local centrée dépannage et installation électrique, avec positionnement rassurant.",
+  },
+  {
+    slug: "balinjera",
+    href: "/balinjera",
+    name: "Balinjera",
+    sector: "Restauration",
+    structure: "Hospitality éditoriale",
+    archetype: "Restaurant éthiopien éditorial",
+    navModel: "Shell immersif multi-page",
+    motionProfile: "Transitions visuelles et rythme éditorial",
+    shapeLanguage: "Images pleine largeur, typographie expressive",
+    pageModel: "Accueil, about, events, blog",
+    primaryCta: "Ouvrir la page",
+    previewImage: "/balinjera/hero.jpg",
+    status: "Lab",
+    description:
+      "Template restaurant immersif gardé hors catalogue public mais disponible pour inspection admin et déploiement Vercel.",
+    adminStatus: "admin-only",
+    adminNote: "Masquée du catalogue public, conservée pour revue admin.",
   },
   {
     slug: "boulangerie",
@@ -341,4 +446,6 @@ export const templateCatalog: TemplateCatalogEntry[] = [
     description:
       "Template détaillée pour réparation smartphone avec pages services, concept, FAQ et prise de contact.",
   },
-];
+] satisfies TemplateCatalogSourceEntry[];
+
+export const templateCatalog = templateCatalogSource.map(withDeploymentLinks);
