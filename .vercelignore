@@ -1,0 +1,6 @@
+.next/
+.next 2/
+node_modules/
+test-results/
+coverage/
+preview-*.png

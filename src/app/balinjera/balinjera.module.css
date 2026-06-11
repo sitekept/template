@@ -96,8 +96,8 @@
   margin: 0 auto;
   align-items: center;
   grid-template-columns: minmax(160px, 0.8fr) minmax(420px, 1.8fr) minmax(
-      230px,
-      0.9fr
+      112px,
+      0.55fr
     );
   gap: 24px;
 }
@@ -185,7 +185,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
 }
 
 .languageSwitch {
@@ -293,7 +292,6 @@
 
 .splitImage::after,
 .subHeroImage::after,
-.bandImage::after,
 .teamImage::after {
   position: absolute;
   inset: 0;
@@ -376,9 +374,9 @@
 .eventCta p,
 .blogCard p,
 .contactRows a {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .foodIntro {
@@ -496,7 +494,7 @@
   z-index: -2;
   background-position: center;
   background-size: cover;
-  opacity: 0.34;
+  opacity: 0.6;
   transform: scale(1.04);
   transition:
     opacity 300ms ease,
@@ -504,7 +502,7 @@
 }
 
 .featureCard:hover .cardMedia {
-  opacity: 0.48;
+  opacity: 0.76;
   transform: scale(1.1);
 }
 
@@ -513,9 +511,9 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 253, 231, 0.72),
-    rgba(255, 253, 231, 0.9) 58%,
-    rgba(255, 253, 231, 0.32)
+    rgba(255, 253, 231, 0.38),
+    rgba(255, 253, 231, 0.62) 58%,
+    rgba(255, 253, 231, 0.18)
   );
   content: '';
 }
@@ -569,8 +567,19 @@
 .offerCopy {
   align-items: center;
   justify-content: center;
-  padding: 92px 10%;
+  gap: clamp(28px, 4vw, 52px);
+  padding: 92px 9%;
   background: var(--pale);
+}
+
+.offerImage {
+  width: min(100%, 380px);
+  aspect-ratio: 1.28;
+  border-radius: var(--radius);
+  background-image: url('/balinjera/products-card.jpg');
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0 24px 64px color-mix(in srgb, var(--green) 12%, transparent);
 }
 
 .nameSection {
@@ -883,6 +892,22 @@
   background-size: cover;
 }
 
+.aboutPageHero {
+  grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
+}
+
+.aboutHeroImage {
+  width: 100%;
+  min-width: 0;
+  background-image: url('/balinjera/food-table.jpg');
+  background-position: center center;
+}
+
+.aboutPageHero .subHeroCopy {
+  padding-inline: clamp(52px, 7vw, 118px);
+  text-align: start;
+}
+
 .subHeroCopy {
   display: flex;
   align-items: flex-start;
@@ -980,28 +1005,32 @@
   background: var(--gold);
 }
 
-.imageBand {
-  display: grid;
-  min-height: 520px;
-  grid-template-columns: 1fr 1fr;
-}
-
-.bandImage,
-.teamImageInline {
-  position: relative;
-  min-height: 520px;
-  overflow: hidden;
-  background-size: cover;
-}
-
-.teamImageInline {
-  background-image: url('/balinjera/team.jpg');
-  background-position: center center;
-}
-
 .eventHeroImage {
   background-image: url('/balinjera/event-card.jpg');
   background-position: center center;
+}
+
+.eventPageHero {
+  min-height: 620px;
+}
+
+.eventPageHero .subHeroImage {
+  min-height: 528px;
+}
+
+.eventPageHero .subHeroCopy {
+  padding-block: clamp(44px, 5vw, 82px);
+}
+
+.eventPageHero .subHeroCopy h1 {
+  max-width: 560px;
+  padding-bottom: 18px;
+  font-size: clamp(38px, 4vw, 58px);
+  line-height: 1.04;
+}
+
+.eventPageHero .subHeroCopy p:not(.eyebrow) {
+  padding-bottom: 24px;
 }
 
 .blogHeroImage {
@@ -1014,7 +1043,7 @@
   gap: clamp(32px, 5vw, 80px);
   grid-template-columns: minmax(320px, 1fr) minmax(320px, 0.9fr);
   background: linear-gradient(90deg, var(--pale) 0 62%, var(--cream) 62% 100%);
-  padding: clamp(78px, 10vw, 150px) clamp(24px, 8vw, 138px);
+  padding: clamp(36px, 5vw, 72px) clamp(24px, 8vw, 138px) clamp(78px, 10vw, 150px);
 }
 
 .eventOption {
@@ -1040,6 +1069,12 @@
     transform 220ms ease;
 }
 
+.eventContactStack {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+}
+
 .eventCta p {
   padding: 18px 0 28px;
 }
@@ -1053,6 +1088,166 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+}
+
+.eventForm {
+  display: grid;
+  gap: 22px;
+  border: 1px solid color-mix(in srgb, var(--green) 12%, transparent);
+  border-radius: var(--radius);
+  background: var(--cream);
+  padding: clamp(30px, 4vw, 48px);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--green) 9%, transparent);
+}
+
+.eventFormHeader {
+  display: grid;
+  gap: 12px;
+}
+
+.eventFormHeader h2 {
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1.12;
+  text-transform: uppercase;
+}
+
+.eventFormHeader p,
+.eventFormConsent,
+.eventFormActions p {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.eventFormHeader p,
+.eventFormConsent {
+  color: color-mix(in srgb, var(--green) 82%, var(--brown));
+}
+
+.eventFormGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.eventFormField {
+  display: grid;
+  gap: 8px;
+}
+
+.eventFormFieldWide {
+  grid-column: 1 / -1;
+}
+
+.eventFormField label {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.eventFormField input,
+.eventFormField textarea {
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--green) 18%, transparent);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, white 62%, var(--cream));
+  color: var(--green);
+  font-family: 'Balinjera Futurism', sans-serif;
+  font-size: 16px;
+  line-height: 1.35;
+  outline: none;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+.eventFormField input {
+  min-height: 50px;
+  padding: 13px 14px;
+}
+
+.eventFormField textarea {
+  min-height: 132px;
+  resize: vertical;
+  padding: 14px;
+}
+
+.eventFormField input::placeholder,
+.eventFormField textarea::placeholder {
+  color: color-mix(in srgb, var(--green) 45%, transparent);
+}
+
+.eventFormField input:focus,
+.eventFormField textarea:focus {
+  border-color: var(--brown);
+  background: white;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 24%, transparent);
+}
+
+.eventFormConsent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.eventFormConsent input {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--brown);
+}
+
+.eventFormActions {
+  display: grid;
+  align-items: center;
+  gap: 14px;
+}
+
+.eventFormActions button {
+  display: inline-flex;
+  width: max-content;
+  min-width: 154px;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--green);
+  border-radius: var(--radius);
+  background: var(--gold);
+  color: var(--green);
+  font-family: 'Balinjera Futurism', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 15px 24px;
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.eventFormActions button:hover {
+  background: linear-gradient(147deg, var(--gold) 78%, var(--brown) 22%);
+  box-shadow: 0 14px 30px rgba(140, 71, 62, 0.18);
+  transform: translateY(-2px);
+}
+
+.eventFormActions button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.eventFormActions svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+}
+
+.eventFormActions p {
+  border-inline-start: 4px solid var(--gold);
+  background: color-mix(in srgb, var(--gold) 16%, transparent);
+  padding: 12px 14px;
 }
 
 .blogGridSection {
@@ -1109,6 +1304,72 @@
   text-transform: uppercase;
 }
 
+.articleTopBar {
+  display: flex;
+  justify-content: flex-start;
+  background: var(--cream);
+  padding: 116px clamp(24px, 7vw, 128px) 24px;
+}
+
+.articleHero {
+  min-height: 668px;
+  padding-top: 0;
+}
+
+.articleSection {
+  background: var(--pale);
+  padding: clamp(78px, 10vw, 150px) clamp(24px, 7vw, 128px);
+}
+
+.articleBody {
+  display: grid;
+  max-width: 980px;
+  margin: 0 auto;
+  gap: clamp(28px, 4vw, 46px);
+}
+
+.articleBackLink {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid color-mix(in srgb, var(--green) 20%, transparent);
+  border-radius: var(--radius);
+  background: var(--cream);
+  padding: 12px 15px;
+  color: var(--green);
+  font-size: 15px;
+  line-height: 1;
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.articleBackLink:hover {
+  border-color: var(--brown);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--green) 9%, transparent);
+  transform: translateY(-2px);
+}
+
+.articleBackLink svg {
+  width: 18px;
+  height: 18px;
+}
+
+.articleText {
+  display: grid;
+  gap: 24px;
+  border-inline-start: 5px solid var(--gold);
+  background: var(--cream);
+  padding: clamp(30px, 5vw, 58px);
+}
+
+.articleText p {
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.65;
+}
+
 .root:global(.motion-ready) [data-balinjera-animate] {
   opacity: 0;
   transform: translate3d(0, 28px, 0);
@@ -1157,8 +1418,8 @@
 @media (max-width: 1180px) {
   .headerInner {
     grid-template-columns: minmax(150px, 0.5fr) minmax(360px, 1.5fr) minmax(
-        190px,
-        0.8fr
+        112px,
+        0.55fr
       );
     gap: 18px;
   }
@@ -1166,10 +1427,6 @@
   .nav {
     gap: 18px;
     font-size: 16px;
-  }
-
-  .headerActions .button {
-    display: none;
   }
 
   .heroCopy {
@@ -1219,10 +1476,6 @@
   .headerActions {
     display: flex;
     margin-left: auto;
-  }
-
-  .headerActions .button {
-    display: none;
   }
 
   .headerActions .languageSwitch {
@@ -1385,6 +1638,14 @@
     padding-top: 0;
   }
 
+  .articleTopBar {
+    padding-top: 132px;
+  }
+
+  .articleHero {
+    margin-top: 0;
+  }
+
   .subHeroImage {
     min-height: 54svh;
   }
@@ -1395,8 +1656,21 @@
     text-align: center;
   }
 
+  .aboutPageHero .subHeroCopy {
+    padding-inline: 11%;
+    text-align: center;
+  }
+
+  .eventPageHero .subHeroCopy {
+    padding-block: clamp(42px, 7vw, 68px);
+  }
+
   .eventDetailSection {
     background: var(--pale);
+  }
+
+  .eventContactStack {
+    gap: 28px;
   }
 
   .footer {
@@ -1493,6 +1767,21 @@
     padding: 52px 8% 60px;
   }
 
+  .aboutPageHero .subHeroCopy {
+    padding-inline: 8%;
+    padding-left: 8%;
+    padding-right: calc(8% + 76px);
+  }
+
+  .aboutPageHero .subHeroCopy h1,
+  .aboutPageHero .subHeroCopy p:not(.eyebrow) {
+    max-width: 100%;
+  }
+
+  .eventPageHero .subHeroCopy {
+    padding-block: 44px 52px;
+  }
+
   .heroText {
     width: min(100%, 340px);
   }
@@ -1515,8 +1804,8 @@
   .eventCta p,
   .blogCard p,
   .contactRows a {
-    font-size: 17px;
-    line-height: 1.55;
+    font-size: 18px;
+    line-height: 1.58;
   }
 
   .copyBlock h2,
@@ -1540,6 +1829,10 @@
 
   .featureCard h3 {
     font-size: 25px;
+  }
+
+  .offerImage {
+    width: min(100%, 360px);
   }
 
   .nameSection {
@@ -1587,8 +1880,17 @@
 
   .detailSection,
   .eventDetailSection,
-  .blogGridSection {
+  .blogGridSection,
+  .articleSection {
     padding: 68px 7%;
+  }
+
+  .articleTopBar {
+    padding: 94px 7% 18px;
+  }
+
+  .articleHero {
+    margin-top: 0;
   }
 
   .detailItem,
@@ -1597,18 +1899,33 @@
     padding: 23px;
   }
 
-  .imageBand,
   .blogGrid {
     grid-template-columns: 1fr;
   }
 
-  .bandImage,
-  .teamImageInline {
-    min-height: 360px;
-  }
-
   .eventCta {
     padding: 30px;
+  }
+
+  .eventForm {
+    padding: 28px;
+  }
+
+  .eventFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .eventFormActions button {
+    width: 100%;
+  }
+
+  .articleText {
+    padding: 28px;
+  }
+
+  .articleText p {
+    font-size: 18px;
+    line-height: 1.68;
   }
 
   .footer {

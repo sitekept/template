@@ -16,15 +16,20 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
+
 import {
+  BALINJERA_ORDER_HREF,
   balinjeraCopy,
   hrefWithLang,
   languageLabels,
+  type BalinjeraBlogPost,
   type BalinjeraLang,
   type BalinjeraPageKey,
 } from "./balinjera-content";
 import { BalinjeraMotion } from "./balinjera-motion";
 import styles from "./balinjera.module.css";
+import { EventInquiryForm } from "./events/event-inquiry-form";
 
 type FrameProps = {
   active: BalinjeraPageKey;
@@ -32,6 +37,9 @@ type FrameProps = {
   currentPath: string;
   lang: BalinjeraLang;
 };
+
+const WHATSAPP_HREF = "https://api.whatsapp.com/send?phone=9720559655559";
+const EVENTS_CONTACT_HREF = "/balinjera/events#event-inquiry";
 
 function arrowFor(lang: BalinjeraLang) {
   return lang === "he" ? (
@@ -100,12 +108,28 @@ function SiteHeader({
     copy.nav.map((item) => {
       const isActive = item.key === active;
       const className = isActive ? styles["navActive"] : undefined;
+      const href = item.href;
+
+      if (href.startsWith("http")) {
+        return (
+          <a
+            aria-current={isActive ? "page" : undefined}
+            className={className}
+            href={href}
+            key={item.key}
+            rel="noreferrer"
+            target="_blank"
+          >
+            {item.label}
+          </a>
+        );
+      }
 
       return (
         <Link
           aria-current={isActive ? "page" : undefined}
           className={className}
-          href={hrefWithLang(item.href, lang)}
+          href={hrefWithLang(href, lang)}
           key={item.key}
         >
           {item.label}
@@ -151,9 +175,6 @@ function SiteHeader({
             <Globe2 aria-hidden="true" />
             <span>{languageLabels[lang].switchTo}</span>
           </Link>
-          <SiteButton href="/balinjera#footer" lang={lang}>
-            {copy.orderLabel}
-          </SiteButton>
         </div>
 
         <details className={styles["mobileMenu"]}>
@@ -245,7 +266,7 @@ function FloatingActions({ lang }: { lang: BalinjeraLang }) {
       <div className={styles["quickActions"]} aria-label={copy.actions}>
         <a
           className={`${styles["quickAction"]} ${styles["woltAction"]}`}
-          href="https://wolt.com/he/isr/tel-aviv/restaurant/balinjera"
+          href={BALINJERA_ORDER_HREF}
           target="_blank"
           rel="noreferrer"
           aria-label={copy.wolt}
@@ -254,7 +275,7 @@ function FloatingActions({ lang }: { lang: BalinjeraLang }) {
         </a>
         <a
           className={`${styles["quickAction"]} ${styles["whatsappAction"]}`}
-          href="https://api.whatsapp.com/send?phone=9720559655559"
+          href={WHATSAPP_HREF}
           target="_blank"
           rel="noreferrer"
           aria-label={copy.whatsapp}
@@ -297,23 +318,21 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
 
   return (
     <>
-      <section className={styles["hero"]}>
-        <div
-          className={`${styles["splitImage"]} ${styles["heroImage"]}`}
-          data-balinjera-animate="image"
-        />
-        <div className={`${styles["splitCopy"]} ${styles["heroCopy"]}`}>
-          <div className={styles["heroText"]} data-balinjera-animate="hero">
-            <p className={styles["eyebrow"]}>{copy.hero.eyebrow}</p>
-            <h1>{splitLines(copy.hero.title)}</h1>
-            <p>{copy.hero.body}</p>
-          </div>
-        </div>
-      </section>
+      <ScrollExpandMedia
+        mediaType="image"
+        mediaSrc="/balinjera/hero.jpg"
+        bgImageSrc="/balinjera/hero.jpg"
+        title={copy.hero.title}
+        date={copy.hero.eyebrow}
+        body={copy.hero.body}
+        expandOnHash
+        preserveTitleLines
+        theme="balinjera"
+      />
 
       <section className={styles["foodIntro"]} id="about">
         <div className={`${styles["splitCopy"]} ${styles["introCopy"]}`}>
-          <div className={styles["copyBlock"]} data-balinjera-animate="fade-up">
+          <div className={styles["copyBlock"]}>
             <h2>{copy.intro.title}</h2>
             <p>{copy.intro.body}</p>
             <SiteButton href="/balinjera#menu" lang={lang}>
@@ -383,15 +402,6 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
           </div>
         </div>
 
-        <div className={`${styles["splitCopy"]} ${styles["offerCopy"]}`}>
-          <div className={styles["copyBlock"]} data-balinjera-animate="fade-up">
-            <h2>{copy.offer.title}</h2>
-            <p>{copy.offer.body}</p>
-            <SiteButton href="/balinjera/about" lang={lang}>
-              {copy.moreInfo}
-            </SiteButton>
-          </div>
-        </div>
       </section>
 
       <section className={styles["nameSection"]}>
@@ -412,7 +422,7 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
             <h2>{copy.name.title}</h2>
             <p>{copy.name.body}</p>
             <SiteButton
-              href="https://wolt.com/he/isr/tel-aviv/restaurant/balinjera"
+              href={BALINJERA_ORDER_HREF}
               lang={lang}
             >
               {copy.orderWolt}
@@ -436,7 +446,15 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
   );
 }
 
-export function ReserveSection({ lang }: { lang: BalinjeraLang }) {
+export function ReserveSection({
+  actionHref = BALINJERA_ORDER_HREF,
+  actionLabel,
+  lang,
+}: {
+  actionHref?: string;
+  actionLabel?: ReactNode;
+  lang: BalinjeraLang;
+}) {
   const copy = balinjeraCopy[lang];
 
   return (
@@ -447,8 +465,8 @@ export function ReserveSection({ lang }: { lang: BalinjeraLang }) {
             <h2 key={line}>{line}</h2>
           ))}
         </div>
-        <SiteButton href="/balinjera#footer" lang={lang} brown>
-          {copy.contactLabel}
+        <SiteButton href={actionHref} lang={lang} brown>
+          {actionLabel ?? copy.orderLabel}
         </SiteButton>
       </div>
       <div className={styles["teamImage"]} data-balinjera-animate="image" />
@@ -457,20 +475,26 @@ export function ReserveSection({ lang }: { lang: BalinjeraLang }) {
 }
 
 function PageHero({
+  actionHref = BALINJERA_ORDER_HREF,
+  actionLabel,
   body,
   eyebrow,
   imageClass,
   lang,
+  sectionClass,
   title,
 }: {
+  actionHref?: string;
+  actionLabel?: ReactNode;
   body: string;
   eyebrow: string;
   imageClass: string | undefined;
   lang: BalinjeraLang;
+  sectionClass?: string | undefined;
   title: string;
 }) {
   return (
-    <section className={styles["subHero"]}>
+    <section className={`${styles["subHero"]} ${sectionClass ?? ""}`}>
       <div
         className={`${styles["subHeroImage"]} ${imageClass ?? ""}`}
         data-balinjera-animate="image"
@@ -479,8 +503,8 @@ function PageHero({
         <p className={styles["eyebrow"]}>{eyebrow}</p>
         <h1>{title}</h1>
         <p>{body}</p>
-        <SiteButton href="/balinjera#footer" lang={lang}>
-          {balinjeraCopy[lang].contactLabel}
+        <SiteButton href={actionHref} lang={lang}>
+          {actionLabel ?? balinjeraCopy[lang].orderLabel}
         </SiteButton>
       </div>
     </section>
@@ -496,8 +520,9 @@ export function AboutPageContent({ lang }: { lang: BalinjeraLang }) {
       <PageHero
         body={page.body}
         eyebrow={page.eyebrow}
-        imageClass={styles["foodImage"]}
+        imageClass={styles["aboutHeroImage"]}
         lang={lang}
+        sectionClass={styles["aboutPageHero"]}
         title={page.title}
       />
 
@@ -521,17 +546,6 @@ export function AboutPageContent({ lang }: { lang: BalinjeraLang }) {
         </div>
       </section>
 
-      <section className={styles["imageBand"]}>
-        <div
-          className={`${styles["bandImage"]} ${styles["injeraImage"]}`}
-          data-balinjera-animate="image"
-        />
-        <div
-          className={`${styles["bandImage"]} ${styles["teamImageInline"]}`}
-          data-balinjera-animate="image"
-        />
-      </section>
-
       <ReserveSection lang={lang} />
     </>
   );
@@ -544,10 +558,13 @@ export function EventsPageContent({ lang }: { lang: BalinjeraLang }) {
   return (
     <>
       <PageHero
+        actionHref={EVENTS_CONTACT_HREF}
+        actionLabel={copy.contactLabel}
         body={page.body}
         eyebrow={page.eyebrow}
         imageClass={styles["eventHeroImage"]}
         lang={lang}
+        sectionClass={styles["eventPageHero"]}
         title={page.title}
       />
 
@@ -564,24 +581,27 @@ export function EventsPageContent({ lang }: { lang: BalinjeraLang }) {
             </article>
           ))}
         </div>
-        <div className={styles["eventCta"]} data-balinjera-animate="fade-up">
-          <Clock aria-hidden="true" />
-          <h2>{page.ctaTitle}</h2>
-          <p>{page.ctaBody}</p>
-          <div className={styles["contactRows"]}>
-            <a href="tel:+97235252527">
-              <Phone aria-hidden="true" />
-              <span>03-525-2527</span>
-            </a>
-            <a
-              href="https://maps.google.com/?q=%D7%9E%D7%9C%D7%9F%204%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MapPin aria-hidden="true" />
-              <span>{copy.footerColumns[0].lines.join(", ")}</span>
-            </a>
+        <div className={styles["eventContactStack"]}>
+          <div className={styles["eventCta"]} data-balinjera-animate="fade-up">
+            <Clock aria-hidden="true" />
+            <h2>{page.ctaTitle}</h2>
+            <p>{page.ctaBody}</p>
+            <div className={styles["contactRows"]}>
+              <a href="tel:+97235252527">
+                <Phone aria-hidden="true" />
+                <span>03-525-2527</span>
+              </a>
+              <a
+                href="https://maps.google.com/?q=%D7%9E%D7%9C%D7%9F%204%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MapPin aria-hidden="true" />
+                <span>{copy.footerColumns[0].lines.join(", ")}</span>
+              </a>
+            </div>
           </div>
+          <EventInquiryForm lang={lang} />
         </div>
       </section>
 
@@ -606,9 +626,10 @@ export function BlogPageContent({ lang }: { lang: BalinjeraLang }) {
       <section className={styles["blogGridSection"]}>
         <div className={styles["blogGrid"]}>
           {page.posts.map((post) => (
-            <article
+            <Link
               className={styles["blogCard"]}
               data-balinjera-animate="card"
+              href={hrefWithLang(`/balinjera/blog/${post.slug}`, lang)}
               key={post.title}
             >
               <Image src={post.image} alt="" width={720} height={480} />
@@ -617,9 +638,54 @@ export function BlogPageContent({ lang }: { lang: BalinjeraLang }) {
                 <h2>{post.title}</h2>
                 <p>{post.excerpt}</p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
+      </section>
+
+      <ReserveSection lang={lang} />
+    </>
+  );
+}
+
+export function BlogArticlePageContent({
+  lang,
+  post,
+}: {
+  lang: BalinjeraLang;
+  post: BalinjeraBlogPost;
+}) {
+  const page = balinjeraCopy[lang].blogPage;
+
+  return (
+    <>
+      <section className={styles["articleTopBar"]}>
+        <Link
+          className={styles["articleBackLink"]}
+          href={hrefWithLang("/balinjera/blog", lang)}
+        >
+          {arrowFor(lang)}
+          <span>{page.backLabel}</span>
+        </Link>
+      </section>
+
+      <PageHero
+        body={post.excerpt}
+        eyebrow={page.articleEyebrow}
+        imageClass={styles["blogHeroImage"]}
+        lang={lang}
+        sectionClass={styles["articleHero"]}
+        title={post.title}
+      />
+
+      <section className={styles["articleSection"]}>
+        <article className={styles["articleBody"]}>
+          <div className={styles["articleText"]}>
+            {post.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </article>
       </section>
 
       <ReserveSection lang={lang} />

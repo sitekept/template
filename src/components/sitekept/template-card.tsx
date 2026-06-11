@@ -3,6 +3,13 @@ import Link from "next/link";
 
 import type { TemplateCatalogEntry } from "@/lib/template-catalog";
 
+const adminStatusLabel: Record<TemplateCatalogEntry["adminStatus"], string> = {
+  "sitekept-public": "SiteKept public",
+  "admin-only": "Admin only",
+  lab: "Lab",
+  archived: "Archivé",
+};
+
 function CardBody({ template }: { template: TemplateCatalogEntry }) {
   return (
     <>
@@ -30,6 +37,9 @@ function CardBody({ template }: { template: TemplateCatalogEntry }) {
           <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900">
             {template.navModel}
           </span>
+          <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+            {adminStatusLabel[template.adminStatus]}
+          </span>
         </div>
 
         <h3 className="mt-4 text-2xl font-semibold text-slate-950">
@@ -52,11 +62,42 @@ function CardBody({ template }: { template: TemplateCatalogEntry }) {
             <span className="font-semibold text-slate-900">Shape:</span>{" "}
             {template.shapeLanguage}
           </p>
+          {template.adminNote ? (
+            <p>
+              <span className="font-semibold text-slate-900">Note:</span>{" "}
+              {template.adminNote}
+            </p>
+          ) : null}
         </div>
 
-        <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-4 text-sm font-medium text-slate-950">
-          <span>{template.primaryCta}</span>
-          <ArrowUpRight className="size-4" />
+        <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-slate-200 pt-4 text-sm font-medium text-slate-950">
+          <Link
+            href={template.href}
+            className="inline-flex items-center gap-1 rounded-full bg-slate-950 px-4 py-2 text-white transition hover:bg-slate-800"
+          >
+            {template.primaryCta}
+            <ArrowUpRight className="size-4" />
+          </Link>
+          <a
+            href={template.vercelUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 rounded-full border border-slate-200 px-4 py-2 transition hover:border-slate-400"
+          >
+            Vercel
+            <ArrowUpRight className="size-4" />
+          </a>
+          {template.sitekeptUrl ? (
+            <a
+              href={template.sitekeptUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 rounded-full border border-blue-200 px-4 py-2 text-blue-800 transition hover:border-blue-400"
+            >
+              SiteKept
+              <ArrowUpRight className="size-4" />
+            </a>
+          ) : null}
         </div>
       </div>
     </>
@@ -67,17 +108,9 @@ export function TemplateCard({ template }: { template: TemplateCatalogEntry }) {
   const className =
     "group flex h-full flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_25px_90px_rgba(15,23,42,0.14)]";
 
-  if (template.hardReload) {
-    return (
-      <a href={template.href} className={className}>
-        <CardBody template={template} />
-      </a>
-    );
-  }
-
   return (
-    <Link href={template.href} className={className}>
+    <article className={className}>
       <CardBody template={template} />
-    </Link>
+    </article>
   );
 }
