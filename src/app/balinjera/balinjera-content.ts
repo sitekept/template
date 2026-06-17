@@ -1,6 +1,19 @@
 export type BalinjeraLang = "he" | "en";
 
-export type BalinjeraPageKey = "home" | "about" | "events" | "blog";
+export type BalinjeraPageKey =
+  | "home"
+  | "about"
+  | "menu"
+  | "events"
+  | "blog"
+  | "accessibility";
+
+export type BalinjeraFooterLine =
+  | string
+  | {
+      href: string;
+      label: string;
+    };
 
 export type BalinjeraBlogPost = {
   slug: string;
@@ -10,8 +23,24 @@ export type BalinjeraBlogPost = {
   body: readonly string[];
 };
 
+export type BalinjeraMenuItem = {
+  name: string;
+  description?: string;
+  price: string;
+};
+
+export type BalinjeraMenuSection = {
+  title: string;
+  items: readonly BalinjeraMenuItem[];
+};
+
 export const BALINJERA_ORDER_HREF =
   "https://wolt.com/he/isr/tel-aviv/restaurant/balinjera";
+export const BALINJERA_PHONE_DISPLAY = "03-525-2527";
+export const BALINJERA_PHONE_HREF = "tel:+97235252527";
+export const BALINJERA_EMAIL = "fantaprada25@gmail.com";
+export const BALINJERA_ACCESSIBILITY_HREF = "/balinjera/accessibility";
+export const SITEKEPT_URL = "https://www.sitekept.com";
 
 export const languageLabels: Record<
   BalinjeraLang,
@@ -55,7 +84,7 @@ export const balinjeraCopy = {
     moreInfo: "מידע נוסף",
     orderWolt: "הזמינו דרך Wolt",
     readyTitle: ["מוכנים לאכול?", "הזמינו שולחן עכשיו!"],
-    madeBy: "Made By Shushan Studio",
+    madeBy: "נבנה על ידי Sitekept",
     footerTagline: "מסעדת באלינג׳רה,\nמטבח אתיופי מסורתי",
     footerColumns: [
       {
@@ -64,7 +93,11 @@ export const balinjeraCopy = {
       },
       {
         title: "שמרו על קשר",
-        lines: ["03-525-2527", "fantaprada25@gmail.com", "הצהרת נגישות"],
+        lines: [
+          { label: BALINJERA_PHONE_DISPLAY, href: BALINJERA_PHONE_HREF },
+          { label: BALINJERA_EMAIL, href: `mailto:${BALINJERA_EMAIL}` },
+          { label: "הצהרת נגישות", href: BALINJERA_ACCESSIBILITY_HREF },
+        ],
       },
       {
         title: "שעות פתיחה",
@@ -81,7 +114,7 @@ export const balinjeraCopy = {
     nav: [
       { key: "home", label: "ראשי", href: "/balinjera" },
       { key: "about", label: "אודותינו", href: "/balinjera/about" },
-      { key: "menu", label: "תפריט", href: "/balinjera#menu" },
+      { key: "menu", label: "תפריט", href: "/balinjera/menu" },
       { key: "events", label: "אירועים", href: "/balinjera/events" },
       { key: "blog", label: "בלוג", href: "/balinjera/blog" },
       { key: "order", label: "הזמינו", href: BALINJERA_ORDER_HREF },
@@ -117,6 +150,14 @@ export const balinjeraCopy = {
         media: "products",
       },
     ],
+    featureSeo: {
+      eyebrow: "מסעדה אתיופית כשרה בתל אביב",
+      title: "אינג׳רה טרייה ואוכל אתיופי מסורתי בכרם התימנים",
+      body: [
+        "באלינג׳רה היא מסעדה אתיופית כשרה בכרם התימנים, ליד שוק הכרמל בלב תל אביב. המטבח מגיש אינג׳רה טרייה מקמח טף, תבשילים מתובלים, מנות בשריות וטבעוניות ושולחן חם שנועד לאכילה משותפת.",
+        "למי שמחפש אוכל אתיופי כשר בתל אביב, באלינג׳רה מחברת מסורת אתיופית-יהודית עם ביסטרו מקומי צעיר: צלחות צבעוניות, חומרי גלם טבעיים, אינג׳רה ללא גלוטן ואירוח לארוחה במסעדה, הזמנה ב-Wolt או אירוע קטן.",
+      ],
+    },
     name: {
       title: "איך בא לי אינג׳ירה",
       body: "משמעות השם של המקום הוא משחק מילים בין המילה אינג׳ירה שהוא הלחם האתיופי הלאומי, והמילה באלינג׳רה באמהרית שמשמעותה לאכול ביחד, הדרך המסורתית לאכול באתיופיה היא במשותף.",
@@ -150,6 +191,14 @@ export const balinjeraCopy = {
       ctaTitle: "רוצים לתכנן אירוע?",
       ctaBody:
         "שלחו לנו פרטים ונבנה יחד ארוחה שמתאימה לקבוצה, לשעה ולסגנון האירוח.",
+      eventSeo: {
+        eyebrow: "אירועים תיירותיים במסעדה אתיופית כשרה בתל אביב",
+        title: "חוויה קולינרית אתיופית בכרם התימנים ההיסטורי",
+        body: [
+          "באלינג׳רה מארחת אירועים תיירותיים, ארוחות טעימה תרבותיות, ימי הולדת, מפגשים משפחתיים וארוחות צוות בכרם התימנים, אחת השכונות ההיסטוריות של תל אביב ליד שוק הכרמל. החוויה בנויה סביב אינג׳רה טרייה, מגשים משותפים, מסורת אתיופית-יהודית ואירוח מקומי חם.",
+          "לקבוצות שמחפשות חוויית אוכל מיוחדת בתל אביב, באלינג׳רה מציעה אפשרויות טבעוניות ובשריות, תבשילים צבעוניים ושולחן שנועד לאכילה משותפת - תחנה טבעית למבקרים שרוצים לגלות מטבח אתיופי בתוך סביבה מקומית היסטורית.",
+        ],
+      },
       form: {
         title: "ספרו לנו על האירוע",
         body: "הטופס מוכן לעיצוב ולבדיקה מקומית. שליחה אמיתית דרך Resend תחובר רק אחרי שהפרויקט יעבור לריפו הסופי.",
@@ -180,10 +229,180 @@ export const balinjeraCopy = {
           },
           message: {
             label: "מה חשוב שנדע?",
-            placeholder: "סוג האירוע, שעה מועדפת, העדפות אוכל וכל פרט שיעזור לנו לחזור אליכם.",
+            placeholder:
+              "סוג האירוע, שעה מועדפת, העדפות אוכל וכל פרט שיעזור לנו לחזור אליכם.",
           },
         },
       },
+    },
+    menuPage: {
+      title: "התפריט, מסעדת באלינג׳רה",
+      body: "באלינג׳רה מציעה מאכלי עדה אתיופיים מסורתיים מבוססי מנת האינג׳רה מלחם הטף. תבשילים צמחוניים, טבעוניים ותבשילים בשריים בטעמים אותנטיים.",
+      sections: [
+        {
+          title: "תפריט אוכל",
+          items: [
+            {
+              name: "סלט נפרו",
+              description: "סלט חיטה, עם עשבי טיבול וחמוציות",
+              price: "35 ₪",
+            },
+            {
+              name: "סלט הבית",
+              description:
+                "חסה, בצל עגבניות, פטרוזיליה, כוסברה, נענע, ברוטב שמן זית וטחינת הבית",
+              price: "40 ₪",
+            },
+            {
+              name: "חציל בטחינה אתיופית",
+              description: "טחינה אתיופית אורגנית, סלסה אתיופית",
+              price: "32 ₪",
+            },
+            {
+              name: "אינג׳ירה פירפיר",
+              description: "סלט עם חתיכות אינג׳רה",
+              price: "30 ₪",
+            },
+            {
+              name: "פירפיר",
+              description:
+                "חתיכות אינג׳ירה מוקפצות עם בצל ובירברי, חריף אתיופי פיקנטי",
+              price: "40 ₪",
+            },
+            {
+              name: "צלוחית טחינה אתיופית אורגנית מתובלת",
+              description: "תיבול ייחודי",
+              price: "15 ₪",
+            },
+            {
+              name: "דאבו",
+              description: "לחם אתיופי",
+              price: "10 ₪",
+            },
+            {
+              name: "תוספת אינג׳ירה",
+              price: "10 ₪",
+            },
+            {
+              name: "מרק היום",
+              description: "תוספת טיבעונית 10 ₪ / תוספת בשרית 22 ₪",
+              price: "30 ₪",
+            },
+            {
+              name: "באלינג׳רה שירו",
+              description: "אינג׳רה עם שירו + פלפל חריף טרי",
+              price: "35 ₪",
+            },
+            {
+              name: "באלינג׳רה ליחיד",
+              description:
+                "4 תוספות טבעוניות לבחירה שמורכבות ממגוון של קטניות וירקות מבושלים",
+              price: "50 ₪",
+            },
+            {
+              name: "באלינג׳רה זוגית טבעונית",
+              description:
+                "7 תוספות טבעוניות שמורכבות ממגוון של קטניות וירקות מבושלים",
+              price: "85 ₪",
+            },
+            {
+              name: "באלינג׳רה זוגית בשרית",
+              description:
+                "2 סוגי בשר לבחירה, 2 אינג׳רות, 4 תוספות צמחוניות + סלט קטן + דאבו + טחינה",
+              price: "115 ₪",
+            },
+            {
+              name: "פסטיבל באלינג׳רה",
+              description:
+                "7 תוספות טבעוניות + 3 תוספות בשריות + סלט גדול + טחינה אתיופית + 3 אינג׳רות",
+              price: "160 ₪",
+            },
+            {
+              name: "טיבס באלינג׳רה",
+              description:
+                "נתח קצבים מוקפץ על מחבט עם תיבול ייחודי ובצל, מגיע עם 3 תוספות צמחוניות",
+              price: "80 ₪",
+            },
+            {
+              name: "סיגה וואט",
+              description:
+                "חריף / לא חריף. תבשיל בשר בקר עם בצל, שום ותיבול אתיופי + 3 תוספות צמחוניות",
+              price: "60 ₪",
+            },
+            {
+              name: "סיגה פירפיר",
+              description:
+                "חתיכות אינג׳רה עם חתיכות בשר ורוטב אדום + 3 תוספות צמחוניות",
+              price: "55 ₪",
+            },
+            {
+              name: "דורו וואט",
+              description:
+                "תבשיל עוף עם ביצה, בצל, שום ותיבול חריף פיקנטי + 3 תוספות צמחוניות",
+              price: "55 ₪",
+            },
+          ],
+        },
+        {
+          title: "באלינג׳רה עסקית",
+          items: [
+            {
+              name: "באלינג׳רה יחיד טבעונית",
+              description: "7 תוספות + סלט קטן",
+              price: "55 ₪",
+            },
+            {
+              name: "באלינג׳רה יחיד בשרית",
+              description: "בשר לבחירה + 4 תוספות צמחוניות + סלט קטן",
+              price: "55 ₪",
+            },
+          ],
+        },
+        {
+          title: "שתייה קלה",
+          items: [
+            { name: "מים נביעות", price: "7 ₪" },
+            { name: "קינלי סודה", price: "8 ₪" },
+            { name: "לימונדה", price: "10 ₪" },
+            { name: "פריגת תפוזים / פריגת אשכוליות", price: "9 ₪" },
+            { name: "פיוזטי", price: "10 ₪" },
+            { name: "קוקה קולה / זירו / דייט", price: "11 ₪" },
+            { name: "פנטה", price: "11 ₪" },
+            { name: "מלט בירה שחורה", price: "12 ₪" },
+          ],
+        },
+        {
+          title: "שתייה חמה",
+          items: [
+            { name: "בונה קפה", price: "7 ₪" },
+            { name: "שי תה תבלינים", price: "10 ₪" },
+            { name: "תה תבלינים + ג׳ינג׳ר", price: "12 ₪" },
+            { name: "קנקן בונה - קפה אתיופי", price: "25 ₪" },
+          ],
+        },
+        {
+          title: "יינות",
+          items: [
+            { name: "בקבוק יין אדום", price: "110 ₪" },
+            { name: "בקבוק יין לבן", price: "110 ₪" },
+          ],
+        },
+        {
+          title: "ערק",
+          items: [
+            { name: "צ׳ייסר ערק", price: "15 ₪" },
+            { name: "כוס ערק", price: "25 ₪" },
+          ],
+        },
+        {
+          title: "בירות",
+          items: [
+            { name: "בירה מהחבית - קלסברג", price: "28/23 ₪" },
+            { name: "בקבוק - טובורג / בירות אתיופיות", price: "23 ₪" },
+            { name: "סמרסבי - סיידר תפוחים אלכוהולי", price: "27 ₪" },
+          ],
+        },
+      ],
     },
     blogPage: {
       eyebrow: "בלוג באלינג׳רה",
@@ -217,6 +436,58 @@ export const balinjeraCopy = {
         },
       ],
     },
+    accessibilityPage: {
+      eyebrow: "הצהרת נגישות",
+      title: "הצהרת נגישות",
+      body: "באלינג׳רה ו-Sitekept מאמינים כי האינטרנט צריך להיות זמין ונגיש לכל אדם, ללא קשר לנסיבות וליכולת.",
+      actionLabel: "קראו את ההצהרה",
+      wcagHref: "https://www.isoc.org.il/files/w3c-wai/guidelines.html",
+      wcagLabel: "המלצות להנגשת תכני אתרי אינטרנט WCAG 2.0",
+      intro: [
+        "אנו מאמינים כי האינטרנט צריך להיות זמין ונגיש לכל אדם, ללא קשר לנסיבות וליכולת. כדי לממש זאת, אנו שואפים לדבוק ככל האפשר בהנחיות הנגישות לתוכן ברשת ברמת AA. עמידה בהנחיות אלו מסייעת לנו להבטיח כי האתר נגיש לקהל רחב, כולל אנשים עיוורים, אנשים עם לקויות מוטוריות, ליקויי ראייה, אפילפסיה, עיוורון צבעים, מוגבלות קוגניטיבית ועוד.",
+        "האתר של מסעדת באלינג׳רה פותח ומתוחזק על ידי Sitekept מתוך כוונה להיות מותאם לכל משתמש בהתאם לדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג 2013, ובהתאם להמלצות להנגשת תכני אתרי אינטרנט.",
+      ],
+      sections: [
+        {
+          title: "התאמות שבוצעו באתר",
+          paragraphs: [
+            "האתר כתוב בצורה סמנטית, עם תגיות HTML מקובלות והיררכיית תוכן ברורה. בנוסף, מוטמעות באתר תכונות ARIA במקומות שבהם הן נדרשות, כדי לסייע למשתמשים הנעזרים בקורא מסך לקרוא, להבין ולהשתמש בפונקציות האתר.",
+          ],
+          list: [
+            "תמונות משמעותיות כוללות תגיות ALT המספקות מידע בהיר ופשוט על תוכן התמונה, ואלמנטים דקורטיביים מוסתרים מקוראי מסך כאשר הדבר מתאים.",
+            "אנו שואפים להתאמה לקוראי מסך פופולריים, כולל JAWS ו-NVDA.",
+            "האתר מותאם לניווט במקלדת, כולל מעבר בין קישורים ופקדים באמצעות Tab ו-Shift + Tab, והפעלת קישורים וכפתורים באמצעות Enter או מקש הרווח לפי סוג הרכיב.",
+            "סימן הפוקוס בעת שימוש במקלדת ברור ובולט.",
+            "קישורים מובחנים באמצעות צבע, משקל טקסט או קו תחתי במקומות שבהם הדבר נדרש.",
+            "ניגודיות הטקסטים באתר נבחרה כדי להקל על הקריאה עבור משתמשים עם ליקויי ראייה.",
+            "באתר לא מופעל שמע אוטומטי.",
+            "כאשר יש באתר קטעי וידאו לצפייה, אנו שואפים לצרף להם גם הסברים טקסטואליים עבור כבדי שמיעה.",
+          ],
+        },
+        {
+          title: "תאימות דפדפן ותמיכה טכנולוגית",
+          paragraphs: [
+            "אנו שואפים לתמוך במערך רחב של דפדפנים וטכנולוגיות מסייעות ככל האפשר, כדי שמשתמשי האתר יוכלו לבחור בכלים המתאימים ביותר עבורם עם כמה שפחות מגבלות.",
+            "האתר נועד לעבוד בדפדפנים נפוצים, כולל Google Chrome, Mozilla Firefox, Apple Safari, Opera ו-Microsoft Edge, וכן עם קוראי מסך נפוצים כגון JAWS ו-NVDA במערכות Windows ו-Mac.",
+          ],
+        },
+        {
+          title: "נגישות המבנה",
+          paragraphs: ["אין קבלת קהל במשרדי Sitekept."],
+        },
+        {
+          title: "הערות, פניות ומשוב",
+          paragraphs: [
+            "למרות המאמצים הרבים בהם נקטנו כדי לאפשר לכל אחד להשתמש באתר בנוחות, עדיין עשויים להיות דפים או קטעים שאינם נגישים במלואם, שנמצאים בתהליך הנגשה או שחסר עבורם פתרון טכנולוגי הולם.",
+            "אם מצאת תקלה, אם אתה מתקשה להשתמש בהיבט כלשהו באתר או אם יש לך רעיונות לשיפור, נשמח לשמוע ממך.",
+          ],
+        },
+      ],
+      contactLabel: "לפנייה בנושא נגישות:",
+      emailLabel: "דוא״ל",
+      phoneLabel: "טלפון",
+      updated: "תאריך עדכון אחרון: 17/06/2026",
+    },
   },
   en: {
     navLabel: "Main navigation",
@@ -227,7 +498,7 @@ export const balinjeraCopy = {
     moreInfo: "More info",
     orderWolt: "Order with Wolt",
     readyTitle: ["Ready to eat?", "Reserve your table now"],
-    madeBy: "Made By Shushan Studio",
+    madeBy: "Made By Sitekept",
     footerTagline: "Balinjera Restaurant,\ntraditional Ethiopian cuisine",
     footerColumns: [
       {
@@ -236,7 +507,11 @@ export const balinjeraCopy = {
       },
       {
         title: "Stay in touch",
-        lines: ["03-525-2527", "fantaprada25@gmail.com", "Accessibility"],
+        lines: [
+          { label: BALINJERA_PHONE_DISPLAY, href: BALINJERA_PHONE_HREF },
+          { label: BALINJERA_EMAIL, href: `mailto:${BALINJERA_EMAIL}` },
+          { label: "Accessibility", href: BALINJERA_ACCESSIBILITY_HREF },
+        ],
       },
       {
         title: "Opening hours",
@@ -253,7 +528,7 @@ export const balinjeraCopy = {
     nav: [
       { key: "home", label: "Home", href: "/balinjera" },
       { key: "about", label: "About", href: "/balinjera/about" },
-      { key: "menu", label: "Menu", href: "/balinjera#menu" },
+      { key: "menu", label: "Menu", href: "/balinjera/menu" },
       { key: "events", label: "Events", href: "/balinjera/events" },
       { key: "blog", label: "Blog", href: "/balinjera/blog" },
       { key: "order", label: "Order", href: BALINJERA_ORDER_HREF },
@@ -289,6 +564,14 @@ export const balinjeraCopy = {
         media: "products",
       },
     ],
+    featureSeo: {
+      eyebrow: "Kosher Ethiopian restaurant in Tel Aviv",
+      title: "Fresh injera and traditional Ethiopian food in Kerem HaTeimanim",
+      body: [
+        "Balinjera is a kosher Ethiopian restaurant in Kerem HaTeimanim, next to Carmel Market in Tel Aviv. The kitchen serves fresh injera made from teff flour, slow-seasoned stews, meat and vegan dishes, and a warm table built for sharing.",
+        "For anyone looking for kosher Ethiopian food in Tel Aviv, Balinjera brings Ethiopian-Jewish tradition into a young local bistro: colorful plates, natural ingredients, gluten-free injera and hosting for lunch, dinner, Wolt orders and small events.",
+      ],
+    },
     name: {
       title: "Craving injera",
       body: "The restaurant name is a play on the word injera, Ethiopia's national bread, and the Amharic word Balinjera, meaning to eat together. Traditionally, Ethiopian food is shared around the same table.",
@@ -322,6 +605,15 @@ export const balinjeraCopy = {
       ctaTitle: "Planning an event?",
       ctaBody:
         "Send us the details and we will shape a meal that fits the group, timing and hosting style.",
+      eventSeo: {
+        eyebrow: "Tourist events at a kosher Ethiopian restaurant in Tel Aviv",
+        title:
+          "A cultural Ethiopian dining experience in historic Kerem HaTeimanim",
+        body: [
+          "Balinjera hosts tourist events, cultural tasting meals, birthdays, family gatherings and team lunches in Kerem HaTeimanim, one of Tel Aviv's most historic neighborhoods beside Carmel Market. The experience is built around fresh injera, shared platters, Ethiopian-Jewish tradition and warm local hospitality.",
+          "For groups looking for a memorable food experience in Tel Aviv, Balinjera offers vegan and meat options, colorful stews and a table designed for eating together, making it a natural stop for visitors who want to discover Ethiopian cuisine in a historic local setting.",
+        ],
+      },
       form: {
         title: "Tell us about the event",
         body: "The form is ready for local design and testing. Real Resend delivery will be connected only after the project is extracted into its final repository.",
@@ -358,6 +650,175 @@ export const balinjeraCopy = {
         },
       },
     },
+    menuPage: {
+      title: "The menu, Balinjera Restaurant",
+      body: "Balinjera serves traditional Ethiopian dishes built around injera, the teff-flour bread at the heart of the meal. The menu includes vegetarian, vegan and meat stews with authentic Ethiopian flavors.",
+      sections: [
+        {
+          title: "Food menu",
+          items: [
+            {
+              name: "Nefro salad",
+              description: "Wheat salad with herbs and cranberries",
+              price: "35 ₪",
+            },
+            {
+              name: "House salad",
+              description:
+                "Lettuce, onion, tomatoes, parsley, cilantro, mint, olive oil dressing and house tahini",
+              price: "40 ₪",
+            },
+            {
+              name: "Eggplant with Ethiopian tahini",
+              description: "Organic Ethiopian tahini and Ethiopian salsa",
+              price: "32 ₪",
+            },
+            {
+              name: "Injera firfir",
+              description: "Salad with pieces of injera",
+              price: "30 ₪",
+            },
+            {
+              name: "Firfir",
+              description:
+                "Pieces of injera sauteed with onion and berbere, a spicy Ethiopian seasoning",
+              price: "40 ₪",
+            },
+            {
+              name: "Seasoned organic Ethiopian tahini bowl",
+              description: "Unique Balinjera seasoning",
+              price: "15 ₪",
+            },
+            {
+              name: "Dabo",
+              description: "Ethiopian bread",
+              price: "10 ₪",
+            },
+            {
+              name: "Extra injera",
+              price: "10 ₪",
+            },
+            {
+              name: "Soup of the day",
+              description: "Vegan add-on 10 ₪ / meat add-on 22 ₪",
+              price: "30 ₪",
+            },
+            {
+              name: "Balinjera shiro",
+              description: "Injera with shiro and fresh hot pepper",
+              price: "35 ₪",
+            },
+            {
+              name: "Balinjera for one",
+              description:
+                "Choose 4 vegan sides made from legumes and cooked vegetables",
+              price: "50 ₪",
+            },
+            {
+              name: "Vegan Balinjera for two",
+              description:
+                "7 vegan sides made from legumes and cooked vegetables",
+              price: "85 ₪",
+            },
+            {
+              name: "Meat Balinjera for two",
+              description:
+                "Choose 2 meats, 2 injeras, 4 vegetarian sides, small salad, dabo and tahini",
+              price: "115 ₪",
+            },
+            {
+              name: "Balinjera Festival",
+              description:
+                "7 vegan sides, 3 meat sides, large salad, Ethiopian tahini and 3 injeras",
+              price: "160 ₪",
+            },
+            {
+              name: "Balinjera tibs",
+              description:
+                "Butcher's cut sauteed with unique seasoning and onion, served with 3 vegetarian sides",
+              price: "80 ₪",
+            },
+            {
+              name: "Siga wat",
+              description:
+                "Spicy or mild beef stew with onion, garlic and Ethiopian seasoning, served with 3 vegetarian sides",
+              price: "60 ₪",
+            },
+            {
+              name: "Siga firfir",
+              description:
+                "Pieces of injera with meat and red sauce, served with 3 vegetarian sides",
+              price: "55 ₪",
+            },
+            {
+              name: "Doro wat",
+              description:
+                "Chicken stew with egg, onion, garlic and spicy seasoning, served with 3 vegetarian sides",
+              price: "55 ₪",
+            },
+          ],
+        },
+        {
+          title: "Business menu",
+          items: [
+            {
+              name: "Vegan Balinjera business for one",
+              description: "7 sides + small salad",
+              price: "55 ₪",
+            },
+            {
+              name: "Meat Balinjera business for one",
+              description: "Choice of meat + 4 vegetarian sides + small salad",
+              price: "55 ₪",
+            },
+          ],
+        },
+        {
+          title: "Soft drinks",
+          items: [
+            { name: "Neviot water", price: "7 ₪" },
+            { name: "Kinley soda", price: "8 ₪" },
+            { name: "Lemonade", price: "10 ₪" },
+            { name: "Prigat orange / Prigat grapefruit", price: "9 ₪" },
+            { name: "Fuzetea", price: "10 ₪" },
+            { name: "Coca-Cola / Zero / Diet", price: "11 ₪" },
+            { name: "Fanta", price: "11 ₪" },
+            { name: "Malt black beer", price: "12 ₪" },
+          ],
+        },
+        {
+          title: "Hot drinks",
+          items: [
+            { name: "Buna coffee", price: "7 ₪" },
+            { name: "Shai spiced tea", price: "10 ₪" },
+            { name: "Spiced tea + ginger", price: "12 ₪" },
+            { name: "Buna pot - Ethiopian coffee", price: "25 ₪" },
+          ],
+        },
+        {
+          title: "Wines",
+          items: [
+            { name: "Red wine bottle", price: "110 ₪" },
+            { name: "White wine bottle", price: "110 ₪" },
+          ],
+        },
+        {
+          title: "Arak",
+          items: [
+            { name: "Arak chaser", price: "15 ₪" },
+            { name: "Glass of arak", price: "25 ₪" },
+          ],
+        },
+        {
+          title: "Beers",
+          items: [
+            { name: "Draft beer - Carlsberg", price: "28/23 ₪" },
+            { name: "Bottle - Tuborg / Ethiopian beers", price: "23 ₪" },
+            { name: "Somersby - alcoholic apple cider", price: "27 ₪" },
+          ],
+        },
+      ],
+    },
     blogPage: {
       eyebrow: "Balinjera Blog",
       title: "Stories, flavors and tradition from the Ethiopian kitchen",
@@ -390,6 +851,58 @@ export const balinjeraCopy = {
           ],
         },
       ],
+    },
+    accessibilityPage: {
+      eyebrow: "Accessibility Statement",
+      title: "Accessibility",
+      body: "Balinjera and Sitekept believe that the internet should be available and accessible to everyone, regardless of circumstances or ability.",
+      actionLabel: "Read the statement",
+      wcagHref: "https://www.isoc.org.il/files/w3c-wai/guidelines.html",
+      wcagLabel: "WCAG 2.0 recommendations for accessible web content",
+      intro: [
+        "We believe that the internet should be available and accessible to everyone, regardless of circumstances or ability. To support this, we strive to follow the Web Content Accessibility Guidelines at AA level as closely as possible. Following these guidelines helps us make the site accessible to a broad audience, including people who are blind, people with motor disabilities, low vision, epilepsy, color blindness, cognitive disabilities and more.",
+        "The Balinjera Restaurant website was developed and is maintained by Sitekept with the intention of being suitable for every user, in line with the Israeli Equal Rights for Persons with Disabilities regulations for service accessibility from 2013 and the recommendations for accessible web content.",
+      ],
+      sections: [
+        {
+          title: "Accessibility Adjustments On The Site",
+          paragraphs: [
+            "The site is written semantically, with standard HTML tags and a clear content hierarchy. ARIA attributes are also used where needed, so users who rely on screen readers can read, understand and use the site's functions.",
+          ],
+          list: [
+            "Meaningful images include ALT text that provides clear and simple information about the image content, while decorative elements are hidden from screen readers where appropriate.",
+            "We aim to support popular screen readers, including JAWS and NVDA.",
+            "The site supports keyboard navigation, including moving between links and controls with Tab and Shift + Tab, and activating links and buttons with Enter or Space according to the element type.",
+            "The keyboard focus indicator is clear and prominent.",
+            "Links are emphasized with color, text weight or underline where needed.",
+            "Text contrast on the site was chosen to make reading easier for users with visual impairments.",
+            "No audio plays automatically on this site.",
+            "When video content is available on the site, we aim to provide accompanying text explanations for people who are hard of hearing.",
+          ],
+        },
+        {
+          title: "Browser Compatibility And Technology Support",
+          paragraphs: [
+            "We aim to support a broad range of browsers and assistive technologies wherever possible, so site users can choose the tools that work best for them with as few limitations as possible.",
+            "The site is intended to work in common browsers, including Google Chrome, Mozilla Firefox, Apple Safari, Opera and Microsoft Edge, as well as common screen readers such as JAWS and NVDA on Windows and Mac.",
+          ],
+        },
+        {
+          title: "Physical Accessibility",
+          paragraphs: ["Sitekept's offices do not receive visitors."],
+        },
+        {
+          title: "Comments, Requests And Feedback",
+          paragraphs: [
+            "Despite the many efforts we have made to allow everyone to use the site comfortably, some pages or sections may still not be fully accessible, may be in the process of being made accessible, or may lack an appropriate technological solution.",
+            "If you found an issue, if you have difficulty using any part of the site or if you have ideas for improvement, we would be glad to hear from you.",
+          ],
+        },
+      ],
+      contactLabel: "For accessibility inquiries:",
+      emailLabel: "Email",
+      phoneLabel: "Phone",
+      updated: "Last updated: 17/06/2026",
     },
   },
 } as const;

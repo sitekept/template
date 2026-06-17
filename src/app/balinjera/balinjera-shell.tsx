@@ -2,7 +2,6 @@ import {
   Accessibility,
   BookOpenText,
   CalendarDays,
-  ChevronLeft,
   ChevronRight,
   Clock,
   Globe2,
@@ -19,11 +18,17 @@ import type { ReactNode } from "react";
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 
 import {
+  BALINJERA_ACCESSIBILITY_HREF,
+  BALINJERA_EMAIL,
   BALINJERA_ORDER_HREF,
+  BALINJERA_PHONE_DISPLAY,
+  BALINJERA_PHONE_HREF,
+  SITEKEPT_URL,
   balinjeraCopy,
   hrefWithLang,
   languageLabels,
   type BalinjeraBlogPost,
+  type BalinjeraFooterLine,
   type BalinjeraLang,
   type BalinjeraPageKey,
 } from "./balinjera-content";
@@ -41,12 +46,8 @@ type FrameProps = {
 const WHATSAPP_HREF = "https://api.whatsapp.com/send?phone=9720559655559";
 const EVENTS_CONTACT_HREF = "/balinjera/events#event-inquiry";
 
-function arrowFor(lang: BalinjeraLang) {
-  return lang === "he" ? (
-    <ChevronLeft aria-hidden="true" />
-  ) : (
-    <ChevronRight aria-hidden="true" />
-  );
+function arrowFor() {
+  return <ChevronRight className={styles["arrowIcon"]} aria-hidden="true" />;
 }
 
 function splitLines(value: string) {
@@ -56,6 +57,36 @@ function splitLines(value: string) {
       <br />
     </span>
   ));
+}
+
+function renderFooterLine(line: BalinjeraFooterLine, lang: BalinjeraLang) {
+  if (typeof line === "string") {
+    return <p key={line}>{line}</p>;
+  }
+
+  if (line.href.startsWith("/")) {
+    return (
+      <Link
+        className={styles["footerLineLink"]}
+        key={line.label}
+        href={hrefWithLang(line.href, lang)}
+      >
+        {line.label}
+      </Link>
+    );
+  }
+
+  return (
+    <a
+      className={styles["footerLineLink"]}
+      key={line.label}
+      href={line.href}
+      rel={line.href.startsWith("http") ? "noreferrer" : undefined}
+      target={line.href.startsWith("http") ? "_blank" : undefined}
+    >
+      {line.label}
+    </a>
+  );
 }
 
 function SiteButton({
@@ -73,7 +104,7 @@ function SiteButton({
   const content = (
     <>
       <span>{children}</span>
-      {arrowFor(lang)}
+      {arrowFor()}
     </>
   );
 
@@ -211,7 +242,7 @@ function Footer({ lang }: { lang: BalinjeraLang }) {
           height={58}
         />
         <p>{splitLines(copy.footerTagline)}</p>
-        <a href="https://shushan.org.il/" target="_blank" rel="noreferrer">
+        <a href={SITEKEPT_URL} target="_blank" rel="noreferrer">
           {copy.madeBy}
         </a>
       </div>
@@ -219,9 +250,9 @@ function Footer({ lang }: { lang: BalinjeraLang }) {
       {copy.footerColumns.map((column) => (
         <div className={styles["footerColumn"]} key={column.title}>
           <h3>{column.title}</h3>
-          {column.lines.map((line) => (
-            <p key={line}>{line}</p>
-          ))}
+          <div className={styles["footerLines"]}>
+            {column.lines.map((line) => renderFooterLine(line, lang))}
+          </div>
         </div>
       ))}
 
@@ -257,12 +288,13 @@ function FloatingActions({ lang }: { lang: BalinjeraLang }) {
 
   return (
     <>
-      <button
+      <Link
         className={styles["accessibility"]}
+        href={hrefWithLang(BALINJERA_ACCESSIBILITY_HREF, lang)}
         aria-label={copy.accessibility}
       >
         <Accessibility aria-hidden="true" />
-      </button>
+      </Link>
       <div className={styles["quickActions"]} aria-label={copy.actions}>
         <a
           className={`${styles["quickAction"]} ${styles["woltAction"]}`}
@@ -335,7 +367,7 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
           <div className={styles["copyBlock"]}>
             <h2>{copy.intro.title}</h2>
             <p>{copy.intro.body}</p>
-            <SiteButton href="/balinjera#menu" lang={lang}>
+            <SiteButton href="/balinjera/menu" lang={lang}>
               {copy.menuCta}
             </SiteButton>
           </div>
@@ -368,9 +400,7 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
                     <h3>{card.title}</h3>
                     <p>{card.description}</p>
                     {cardHref ? (
-                      <span className={styles["cardArrow"]}>
-                        {arrowFor(lang)}
-                      </span>
+                      <span className={styles["cardArrow"]}>{arrowFor()}</span>
                     ) : null}
                   </span>
                 </>
@@ -401,7 +431,15 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
             })}
           </div>
         </div>
-
+        <div className={`${styles["splitCopy"]} ${styles["offerCopy"]}`}>
+          <div className={styles["copyBlock"]} data-balinjera-animate="fade-up">
+            <p className={styles["eyebrow"]}>{copy.featureSeo.eyebrow}</p>
+            <h2>{copy.featureSeo.title}</h2>
+            {copy.featureSeo.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className={styles["nameSection"]}>
@@ -421,10 +459,7 @@ export function HomePageContent({ lang }: { lang: BalinjeraLang }) {
           <div className={styles["copyBlock"]} data-balinjera-animate="fade-up">
             <h2>{copy.name.title}</h2>
             <p>{copy.name.body}</p>
-            <SiteButton
-              href={BALINJERA_ORDER_HREF}
-              lang={lang}
-            >
+            <SiteButton href={BALINJERA_ORDER_HREF} lang={lang}>
               {copy.orderWolt}
             </SiteButton>
           </div>
@@ -551,6 +586,77 @@ export function AboutPageContent({ lang }: { lang: BalinjeraLang }) {
   );
 }
 
+export function AccessibilityPageContent({ lang }: { lang: BalinjeraLang }) {
+  const page = balinjeraCopy[lang].accessibilityPage;
+
+  return (
+    <>
+      <PageHero
+        actionHref={`${BALINJERA_ACCESSIBILITY_HREF}#accessibility-statement`}
+        actionLabel={page.actionLabel}
+        body={page.body}
+        eyebrow={page.eyebrow}
+        imageClass={styles["accessibilityHeroImage"]}
+        lang={lang}
+        sectionClass={styles["articleHero"]}
+        title={page.title}
+      />
+
+      <section
+        className={styles["articleSection"]}
+        id="accessibility-statement"
+      >
+        <article className={styles["articleBody"]}>
+          <div className={styles["articleText"]}>
+            {page.intro.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            <p>
+              <a href={page.wcagHref} target="_blank" rel="noreferrer">
+                {page.wcagLabel}
+              </a>
+            </p>
+
+            {page.sections.map((section) => (
+              <section
+                className={styles["accessibilitySection"]}
+                key={section.title}
+              >
+                <h2>{section.title}</h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+                {"list" in section ? (
+                  <ul>
+                    {section.list.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </section>
+            ))}
+
+            <section className={styles["accessibilitySection"]}>
+              <h2>{page.contactLabel}</h2>
+              <div className={styles["accessibilityContactLinks"]}>
+                <a href={`mailto:${BALINJERA_EMAIL}`}>
+                  {page.emailLabel}: {BALINJERA_EMAIL}
+                </a>
+                <a href={BALINJERA_PHONE_HREF}>
+                  {page.phoneLabel}: {BALINJERA_PHONE_DISPLAY}
+                </a>
+              </div>
+              <p>{page.updated}</p>
+            </section>
+          </div>
+        </article>
+      </section>
+
+      <ReserveSection lang={lang} />
+    </>
+  );
+}
+
 export function EventsPageContent({ lang }: { lang: BalinjeraLang }) {
   const copy = balinjeraCopy[lang];
   const page = copy.eventsPage;
@@ -587,9 +693,9 @@ export function EventsPageContent({ lang }: { lang: BalinjeraLang }) {
             <h2>{page.ctaTitle}</h2>
             <p>{page.ctaBody}</p>
             <div className={styles["contactRows"]}>
-              <a href="tel:+97235252527">
+              <a href={BALINJERA_PHONE_HREF}>
                 <Phone aria-hidden="true" />
-                <span>03-525-2527</span>
+                <span>{BALINJERA_PHONE_DISPLAY}</span>
               </a>
               <a
                 href="https://maps.google.com/?q=%D7%9E%D7%9C%D7%9F%204%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91"
@@ -601,7 +707,71 @@ export function EventsPageContent({ lang }: { lang: BalinjeraLang }) {
               </a>
             </div>
           </div>
+        </div>
+        <div className={styles["eventInquiryLayout"]}>
           <EventInquiryForm lang={lang} />
+          <aside
+            className={styles["eventSeoPanel"]}
+            data-balinjera-animate="fade-up"
+          >
+            <p className={styles["eyebrow"]}>{page.eventSeo.eyebrow}</p>
+            <h2>{page.eventSeo.title}</h2>
+            {page.eventSeo.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </aside>
+        </div>
+      </section>
+
+      <ReserveSection lang={lang} />
+    </>
+  );
+}
+
+export function MenuPageContent({ lang }: { lang: BalinjeraLang }) {
+  const copy = balinjeraCopy[lang];
+  const page = copy.menuPage;
+
+  return (
+    <>
+      <PageHero
+        body={page.body}
+        eyebrow={copy.menuCta}
+        imageClass={styles["menuHeroImage"]}
+        lang={lang}
+        sectionClass={styles["menuPageHero"]}
+        title={page.title}
+      />
+
+      <section className={styles["menuPageSection"]}>
+        <div
+          className={styles["menuPageHeader"]}
+          data-balinjera-animate="fade-up"
+        >
+          <Utensils aria-hidden="true" />
+          <h2>{copy.menuCta}</h2>
+        </div>
+        <div className={styles["menuSections"]}>
+          {page.sections.map((section) => (
+            <section
+              className={styles["menuGroup"]}
+              data-balinjera-animate="card"
+              key={section.title}
+            >
+              <h3>{section.title}</h3>
+              <div className={styles["menuItems"]}>
+                {section.items.map((item) => (
+                  <article className={styles["menuItem"]} key={item.name}>
+                    <div className={styles["menuItemText"]}>
+                      <h4>{item.name}</h4>
+                      {"description" in item ? <p>{item.description}</p> : null}
+                    </div>
+                    <p className={styles["menuPrice"]}>{item.price}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       </section>
 
@@ -664,7 +834,7 @@ export function BlogArticlePageContent({
           className={styles["articleBackLink"]}
           href={hrefWithLang("/balinjera/blog", lang)}
         >
-          {arrowFor(lang)}
+          {arrowFor()}
           <span>{page.backLabel}</span>
         </Link>
       </section>

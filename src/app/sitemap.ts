@@ -16,8 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "/balinjera",
     "/balinjera/about",
+    "/balinjera/menu",
     "/balinjera/events",
     "/balinjera/blog",
+    "/balinjera/accessibility",
   ];
   const articleRoutes = getBlogPostSlugs().map(
     (slug) => `/balinjera/blog/${slug}`
