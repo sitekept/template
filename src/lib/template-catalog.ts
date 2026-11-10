@@ -98,6 +98,28 @@ function withDeploymentLinks(
 
 const templateCatalogSource = [
   {
+    slug: "colchis",
+    href: "/colchis",
+    name: "Colchis",
+    sector: "Immobilier international",
+    structure: "Listings multi-page",
+    archetype: "Agence immobilière éditoriale en Géorgie",
+    navModel: "Header flottant + sélecteur 4 langues + WhatsApp",
+    motionProfile: "Reveals floutés, zoom hero, menu mobile en cascade",
+    shapeLanguage: "Angles 6px, double cadre, crème / encre / bordeaux",
+    pageModel:
+      "Accueil, annonces filtrables, fiche bien, services, blog 3 articles, FAQ, contact",
+    primaryCta: "Ouvrir la page",
+    previewImage: "/templates/colchis/assets/img/hero-tbilisi-sm.jpg",
+    status: "Nouveau",
+    description:
+      "Site immobilier pour la Géorgie (Tbilissi, Batoumi, Goudaouri) en hébreu RTL, russe, anglais et géorgien : prix, loyer et rendement par bien, calculateur de rendement, services vol/hôtel/aéroport/banque.",
+    adminStatus: "admin-only",
+    adminNote:
+      "Template backstage servie en HTML statique (public/templates/colchis), non affichée sur sitekept.com.",
+    hardReload: true,
+  },
+  {
     slug: "dentiste",
     href: "/dentiste",
     name: "Dentiste",
